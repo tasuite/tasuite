@@ -1,6 +1,19 @@
 <?php
 
-	echo json_encode($students);
+	echo "[";
+
+	$first = true;
+	foreach ($students as $student) {
+		if($first) {
+			$first = false;
+		}
+		else {
+			echo ",";
+		}
+		echo json_encode($student['Student']);
+	}
+
+	echo "]";
 
 /*
 else if($var==2){
