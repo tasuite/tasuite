@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Launchpad</title>
+  <title>TA Application</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
   <meta name="author" content="">
@@ -65,14 +65,14 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </a>
-        <a style="color: white" class="brand" href="#">Dan's Launchpad</a>
+        <a style="color: white" class="brand" href="#">TA Application</a>
         <div class="nav-collapse collapse">
           <ul class="nav">
-            <li><a href="http://www.mail.virginia.edu" target="_blank">UVa Mail</a></li>
+<!--            <li><a href="http://www.mail.virginia.edu" target="_blank">UVa Mail</a></li>
             <li><a href="http://collab.itc.virginia.edu/portal" target="_blank">Collab</a></li>
             <li><a href="http://stardock.cs.virginia.edu/redmine" target="_blank">Redmine</a></li>
             <li><a href="http://www.virginia.edu/sis" target="_blank">SIS</a></li>
-            <li><a href="http://rabi.phys.virginia.edu/mySIS/CS" target="_blank">Anti-SIS</a></li>
+            <li><a href="http://rabi.phys.virginia.edu/mySIS/CS" target="_blank">Anti-SIS</a></li> -->
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -81,80 +81,34 @@
 
   <div class="container">
     <div class="row-fluid">
-      <div class="span6">
-        <div class="acc">
-          <h3><a href="#">Frequently Visited</a></h3>
-          <div>
-            <strong>Course Related</strong>
-            <ul style="list-style-type: none">
-              <li><a href="http://www.cs.virginia.edu/~sherriff/cs1110" target="_blank">CS 1110 / 1111 (Intro To Programming)</a></li>
-              <li><a href="http://www.cs.virginia.edu/~weimer/2012-4610" target="_blank">CS 4610 (Programming Languages)</li>
-              <li><a href="http://www.cs.virginia.edu/~sherriff/cs4720" target="_blank">CS 4720 (Web and Mobile Systems)</a></li>
-              <li><a href="http://www.cs.virginia.edu/~sherriff/cs4750" target="_blank">CS 4750 (Database Systems)</a></li>
-            </ul>
-            <strong>UVa Hosted</strong>
-            <ul style="list-style-type:none">
-              <li><a href="http://plato.cs.virginia.edu/~dgm3df" target="_blank">Plato Home</a></li>
-              <li><a href="http://people.virginia.edu/~dgm3df" target="_blank">Blue.UNIX Home</a></li>
-              <li><a href="http://plato.cs.virginia.edu/~cs3240g5a" target="_blank">3240 Group Site</a></li>
-            </ul>
-            <strong>Work Related</strong>
-            <ul style="list-style-type: none">
-              <li><a href="http://plato.cs.virginia.edu/~dgm3df/queueapp" target="_blank">Office Hours Queueing App</a></li>
-              <li><a href="http://www.web.virginia.edu/powertrk" target="_blank">PowerTrack</a></li>
-              <li><a href="http://www.virginia.edu/integratedsystem" target="_blank">SSTL</a></li>
-            </ul>
+      <div class="span10">
+        <form class="form-horizontal" method="post">
+          <legend>Personal Information</legend>
+          <div class="control-group">
+            <label class="control-label" for="inputFname">First Name</label>
+            <div class="controls">
+              <input type="text" id="inputFname">
+            </div>
           </div>
-          <h3><a href="#">Utilities</a></h3>
-          <div>
-            <ul style="list-style-type: none">
-              <li><a id="1" href="http://stardock.cs.virginia.edu/phpMyAdmin" target="_blank">phpMyAdmin on Stardock</a></li>
-              <li><a href="http://plato.cs.virginia.edu/resetPassword.php" target="_blank">TA Password Reset</a></li>
-              <li><a href="http://libra.cs.virginia.edu/tpegs" target="_blank">TPEGS</a></li>
-              <li><a href="http://html5.validator.nu" target="_blank">HTML5 Validator</a></li>
-              <li><a href="http://console.aws.amazon.com/s3/home" target="_blank">AWS Control Panel</a></li>
-              <li><a href="http://rosettacode.org/wiki/Rosetta_Code" target="_blank">Rosetta Code</a></li>
-            </ul>
+          <div class="control-group">
+            <label class="control-label" for="inputLname">Last Name</label>
+            <div class="controls">
+              <input type="text" id="inputLname">
+            </div>
           </div>
-          <h3><a href="#">Fun Things</a></h3>
-          <div>
-            <ul style="list-style-type: none">
-              <li><a href="http://www.reddit.com" target="_blank">Reddit</a></li>
-              <li><a href="http://www.facebook.com" target="_blank">Facebook</a></li>
-              <li><a href="http://www.grooveshark.com" target="_blank">Grooveshark</a></li>
-              <li><a href="http://www.xkcd.com" target="_blank">XKCD</a></li>
-              <li><a href="http://what-if.xkcd.com" target="_blank">What If?</a></li>
-              <li><a href="http://27bslash6.com" target="_blank">27b/6</a></li>
-              <li><a href="http://dilbert.com" target="_blank">Dilbert</a></li>
-              <li><a href="http://theoatmeal.com" target="_blank">The Oatmeal</a></li>
-              <li><a href="http://explosm.net" target="_blank">Explosm</a></li>
-            </ul>
+          <div class="control-group">
+            <label class="control-label" for="inputCompid">UVa Computing ID</label>
+            <div class="controls">
+              <input type="text" id="inputCompid">
+            </div>
           </div>
-        </div>
-        <br><br>
-        <button id="explode" class="btn btn-danger">TAB EXPLOSARZ</button>
-      </div>
-      <div id="right" class="span6">
-        <iframe src="https://www.google.com/calendar/embed?showTitle=0&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=200&amp;wkst=1&amp;bgcolor=%23ffffff&amp;src=dgm3df%40virginia.edu&amp;color=%23125A12&amp;ctz=America%2FNew_York" style=" border-width:0 " width="400" height="200" frameborder="0" scrolling="no"></iframe><hr width="400">    
-        <div class="clearfix">
-          <label style="color: gray;" for="xlInput">LDAP Query</label>
-          <div class="input"> 
-            <input  class="xlarge" type="search" id="ldapqry" size="30" maxlen="30" placeholder="Lastname, CompID, Phone"/> 
-          </div>
-          <div id="ldapresult"></div> 
-        </div>
-        <div class="clearfix">
-          <label style="color: gray;" for="xlInput">Search Wikipedia</label>
-          <div class="input">
-            <input class="xlarge" type="search" id="wiki" size="30" maxlen="30" placeholder="Search">
-          </div>
-        </div>
-        <div class="clearfix">
-          <label style="color: gray;" for="xlInput">Search Google</label>
-          <div class="input">
-            <input class="xlarge" type="search" id="wiki" size="30" maxlen="30" placeholder="Search">
-          </div>
-        </div>
+          <!-- TO ADD:
+                      Year
+                      Personal Statement
+                      Major
+                      School
+          -->
+        </form>
       </div>
     </div>
   </div>
