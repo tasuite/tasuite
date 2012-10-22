@@ -1,12 +1,11 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <title>TA Application</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="">
-  <meta name="author" content="">
+  <meta name="description" content="TA Application Form">
+  <meta name="author" content="AdamHunterDan">
 
   <!-- Le styles -->
   <link href="css/bootstrap.css" rel="stylesheet">
@@ -102,6 +101,39 @@
               <input type="text" id="inputCompid">
             </div>
           </div>
+          <div class="control-group">
+            <label class="control-label" for="inputYear">Current Year</label>
+            <div class="controls">
+              <select id="inputYear">
+                <option>1st Year</option>
+                <option>2nd Year</option>
+                <option>3rd Year</option>
+                <option>4th Year</option>
+                <option>5th Year</option>
+              </select>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="inputSchool">School</label>
+            <div class="controls">
+              <select id="inputSchool">
+                <option>College of Arts and Sciences</option>
+                <option>School of Engineering and Applied Science</option>
+                <option>School of Nursing</option>
+                <option>School of Architecture</option>
+                <option>School of Commerce</option>
+              </select>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="inputStatement">Personal Statement</label>
+            <div class="controls">
+              <textarea rows=5 placeholder="Just a few lines is fine.  If someone referred you, let us know!"></textarea>
+            </div>
+          </div>
+          <legend>Grades</legend>
+          <legend>Availability</legend>
+          <button type="submit" class="btn btn-success">Submit</button>
           <!-- TO ADD:
                       Year
                       Personal Statement
