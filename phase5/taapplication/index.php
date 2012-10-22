@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> <!--x.removeChild(x.lastChild)-->
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -21,39 +21,103 @@
   <link href="css/bootstrap-responsive.css" rel="stylesheet">
   <script type="text/javascript">
   $(document).ready(function(){
-    $(function() {
-      $( ".acc" ).accordion();
-    });
-  })
-
-  $(document).ready(function(){
-    $(function() {
-      $( '#ldapqry' ).change(function(){
-        $.ajax({
-          type: 'POST',
-          url: 'uvaldap.php',
-          data: {param: $('#ldapqry').val()},
-          success: function(data) {
-            $( '#ldapresult' ).html(data);
-          }
-        })
-      })
+    var availableCourses = [
+      "CS 1010",
+      "CS 1110",
+      "CS 1111",
+      "CS 1120",
+      "CS 2102",
+      "CS 2110",
+      "CS 2150",
+      "CS 3102",
+      "CS 3240",
+      "CS 3330",
+      "CS 4102",
+      "CS 4414",
+      "CS 4630"
+    ];
+    $('.cname').autocomplete({
+      source: availableCourses
     })
-  })
 
-  $(document).ready(function(){
-    $(function() {
-      $('#explode').click(function(){
-        var allLinks = document.getElementsByTagName('a');
-        for (var i = 0; i < allLinks.length; i++) {
-          allLinks[i].click();
-        };
+    var availableInstructors = [
+      "Bloomfield",
+      "Cettei",
+      "Cohoon",
+      "Davidson",
+      "Evans",
+      "Grimshaw",
+      "Gurumurthi",
+      "Horton",
+      "Humphrey",
+      "Knight",
+      "Reynolds",
+      "shelat",
+      "Sherriff",
+      "Skadron",
+      "Son",
+      "Stankovic",
+      "Sullivan",
+      "Weimer"
+    ];
+    $('.inst').autocomplete({
+      source: availableInstructors
+    })
+    $('#add').click(function(){
+      var curnum = parseInt(document.getElementById('gradeCount').value) + 1;
+      document.getElementById('gradeCount').value = curnum + "";
+      var newdiv = document.createElement('div');
+      newdiv.setAttribute('class', 'control-group');
+      newdiv.innerHTML =
+        '<label class="control-label" for="inputCourse' + curnum + '">Course</label> \
+              <div class="controls"> \
+                <input type="text" class="cname" name="inputCourse' + curnum + '" placeholder="Course Name"> \
+              </div> \
+              <label class="control-label" for="inputInstructor' + curnum + '">Instructor</label> \
+              <div class="controls"> \
+                <input type="text" class="inst" name="inputInstructor' + curnum + '" placeholder="Instructor Name"> \
+              </div> \
+              <label class="control-label" for="inputYear' + curnum + '">Year</label> \
+              <div class="controls"> \
+                <select name="inputYear' + curnum + '"> \
+                  <option>2009</option> \
+                  <option>2010</option> \
+                  <option>2011</option> \
+                  <option>2012</option> \
+                  <option>2013</option> \
+                </select> \
+              </div> \
+              <label class="control-label" for="inputSemester' + curnum + '">Semester</label> \
+              <div class="controls"> \
+                <select name="inputSemester' + curnum + '"> \
+                  <option>Spring</option> \
+                  <option>Fall</option> \
+                </select> \
+              </div> \
+              <label class="control-label" for="inputGrade' + curnum + '">Grade</label> \
+              <div class="controls"> \
+                <select name="inputGrade' + curnum + '"> \
+                  <option>A+</option> \
+                  <option>A</option> \
+                  <option>A-</option> \
+                  <option>B+</option> \
+                  <option>B</option> \
+                  <option>B-</option> \
+                  <option>C+</option> \
+                  <option>C</option> \
+                </select> \
+              </div>';
+      document.getElementById('gradeInputs').appendChild(newdiv);
+      $('.cname').autocomplete({
+        source: availableCourses
+      })
+      $('.inst').autocomplete({
+        source: availableInstructors
       })
     })
   })
   </script>
 </head>
-
 <body>
 
   <div class="navbar navbar-inverse navbar-fixed-top">
@@ -86,25 +150,25 @@
           <div class="control-group">
             <label class="control-label" for="inputFname">First Name</label>
             <div class="controls">
-              <input type="text" id="inputFname">
+              <input type="text" name="inputFname">
             </div>
           </div>
           <div class="control-group">
             <label class="control-label" for="inputLname">Last Name</label>
             <div class="controls">
-              <input type="text" id="inputLname">
+              <input type="text" name="inputLname">
             </div>
           </div>
           <div class="control-group">
             <label class="control-label" for="inputCompid">UVa Computing ID</label>
             <div class="controls">
-              <input type="text" id="inputCompid">
+              <input type="text" name="inputCompid" value=<?php echo '"' . $_SERVER['PHP_AUTH_USER'] . '"' ?>  readonly>
             </div>
           </div>
           <div class="control-group">
             <label class="control-label" for="inputYear">Current Year</label>
             <div class="controls">
-              <select id="inputYear">
+              <select name="inputYear">
                 <option>1st Year</option>
                 <option>2nd Year</option>
                 <option>3rd Year</option>
@@ -116,7 +180,7 @@
           <div class="control-group">
             <label class="control-label" for="inputSchool">School</label>
             <div class="controls">
-              <select id="inputSchool">
+              <select name="inputSchool">
                 <option>College of Arts and Sciences</option>
                 <option>School of Engineering and Applied Science</option>
                 <option>School of Nursing</option>
@@ -128,18 +192,56 @@
           <div class="control-group">
             <label class="control-label" for="inputStatement">Personal Statement</label>
             <div class="controls">
-              <textarea rows=5 placeholder="Just a few lines is fine.  If someone referred you, let us know!"></textarea>
+              <textarea name="inputStatement" rows=5 placeholder="Just a few lines is fine.  If someone referred you, let us know!"></textarea>
             </div>
           </div>
           <legend>Grades</legend>
+          <div id="gradeInputs">
+            <div class="control-group">
+              <input type="hidden" id="gradeCount" value="1">
+              <label class="control-label" for="inputCourse1">Course</label>
+              <div class="controls">
+                <input type="text" class="cname" name="inputCourse1" placeholder="Course Name">
+              </div>
+              <label class="control-label" for="inputInstructor1">Instructor</label>
+              <div class="controls">
+                <input type="text" class="inst" name="inputInstructor1" placeholder="Instructor Name">
+              </div>
+              <label class="control-label" for="inputYear1">Year</label>
+              <div class="controls">
+                <select name="inputYear1">
+                  <option>2009</option>
+                  <option>2010</option>
+                  <option>2011</option>
+                  <option>2012</option>
+                  <option>2013</option>
+                </select>
+              </div>
+              <label class="control-label" for="inputSemester1">Semester</label>
+              <div class="controls">
+                <select name="inputSemester1">
+                  <option>Spring</option>
+                  <option>Fall</option>
+                </select>
+              </div>
+              <label class="control-label" for="inputGrade1">Grade</label>
+              <div class="controls">
+                <select name="inputGrade1">
+                  <option>A+</option>
+                  <option>A</option>
+                  <option>A-</option>
+                  <option>B+</option>
+                  <option>B</option>
+                  <option>B-</option>
+                  <option>C+</option>
+                  <option>C</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-primary" onclick="return false" id="add">Add Another Course</button><br><br>
           <legend>Availability</legend>
           <button type="submit" class="btn btn-success">Submit</button>
-          <!-- TO ADD:
-                      Year
-                      Personal Statement
-                      Major
-                      School
-          -->
         </form>
       </div>
     </div>
