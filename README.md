@@ -21,7 +21,10 @@ TBD
 TBD
 
 ####Phase 5 - Central Web Based Application Publishing Phases 1 and 3####
-Ruby/Rails?  Need to decice on dev env.
+taapplication
+queue
+regraderequest
+analytics
 
 ####Phase 6 - Update Phase 5 to Consume Third-Party Service####
 TBD
