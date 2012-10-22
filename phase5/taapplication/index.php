@@ -63,6 +63,9 @@
     $('.inst').autocomplete({
       source: availableInstructors
     })
+    $('#remove').click(function(){
+      document.getElementById('gradeInputs').removeChild(document.getElementById('gradeInputs').lastChild);
+    })
     $('#add').click(function(){
       var curnum = parseInt(document.getElementById('gradeCount').value) + 1;
       document.getElementById('gradeCount').value = curnum + "";
@@ -239,7 +242,8 @@
               </div>
             </div>
           </div>
-          <button class="btn btn-primary" onclick="return false" id="add">Add Another Course</button><br><br>
+          <button class="btn" onclick="return false" id="add">Add Another Course</button>
+          <button class="btn" onclick="return false" id="remove">Remove Last Course</button><br><br>
           <legend>Availability</legend>
           <button type="submit" class="btn btn-success">Submit</button>
         </form>
