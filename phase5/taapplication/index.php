@@ -245,6 +245,30 @@
           <button class="btn" onclick="return false" id="add">Add Another Course</button>
           <button class="btn" onclick="return false" id="remove">Remove Last Course</button><br><br>
           <legend>Availability</legend>
+          <div id="availabilityInputs">
+            <div class="control-group">
+              <input type="hidden" id="availabilityCount" value="1">
+              <label class="control-label" for="availCourse1">Course</label>
+              <div class="controls">
+                <select name="course1">
+                  <!-- USE ARRAY AT BEGINNING SO DON'T HAVE TO REPEAT, ALSO HOW TO SET GLOBAL YEAR SEMESTER? -->
+                  <?php 
+                    require_once('dbconnect.php');
+                    $db = DbUtil::loginConnection();
+                    $stmt = $db -> stmt_init();
+
+                    if($stmt -> prepare("SELECT DISTINCT course FROM sections WHERE semester='Spring' and year_offered=2013") or die(mysqli_error($db))) {
+                      $stmt -> execute();
+                      $stmt -> bind_result($course);
+                      while($stmt -> fetch()){
+                        echo '<option>' . $course . '</option>';
+                      }  
+                    }
+                   ?>
+                </select>
+              </div>
+            </div>
+          </div>
           <button type="submit" class="btn btn-success">Submit</button>
         </form>
       </div>
