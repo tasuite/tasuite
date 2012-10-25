@@ -11,6 +11,7 @@
   <link href="css/bootstrap.css" rel="stylesheet">
   <script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
   <script type="text/javascript" src="js/jquery-ui-1.8.24.custom.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
   <link rel="stylesheet" type="text/css" href="css/ui-lightness/jquery-ui-1.8.24.custom.css">
   <style>
   body {
@@ -75,11 +76,11 @@
         '<label class="control-label" for="inputCourse' + curnum + '">Course</label> \
               <div class="controls"> \
                 <input type="text" class="cname" name="inputCourse' + curnum + '" placeholder="Course Name"> \
-              </div> \
+              </div> <div class="courseChildren' + curnum + '"> \
               <label class="control-label" for="inputInstructor' + curnum + '">Instructor</label> \
               <div class="controls"> \
                 <input type="text" class="inst" name="inputInstructor' + curnum + '" placeholder="Instructor Name"> \
-              </div> \
+              </div>\
               <label class="control-label" for="inputYear' + curnum + '">Year</label> \
               <div class="controls"> \
                 <select name="inputYear' + curnum + '"> \
@@ -109,8 +110,14 @@
                   <option>C+</option> \
                   <option>C</option> \
                 </select> \
-              </div>';
+              </div></div>';
+      $('#gradeInputs div.courseChildren' + (curnum-1)).collapse('hide');
+      $('label[for=inputCourse' + (curnum-1) + ']').text("Click here to expand");
+      $('label[for=inputCourse' + (curnum-1) + ']').click(function(){
+        $($(this).parent().get(0).children[$($(this).parent().get(0)).children().size()-1]).collapse('toggle');
+      })
       document.getElementById('gradeInputs').appendChild(newdiv);
+      $('#gradeInputs div.control-group').last().hide().fadeIn(500);
       $('.cname').autocomplete({
         source: availableCourses
       })
@@ -206,39 +213,41 @@
               <div class="controls">
                 <input type="text" class="cname" name="inputCourse1" placeholder="Course Name">
               </div>
-              <label class="control-label" for="inputInstructor1">Instructor</label>
-              <div class="controls">
-                <input type="text" class="inst" name="inputInstructor1" placeholder="Instructor Name">
-              </div>
-              <label class="control-label" for="inputYear1">Year</label>
-              <div class="controls">
-                <select name="inputYear1">
-                  <option>2009</option>
-                  <option>2010</option>
-                  <option>2011</option>
-                  <option>2012</option>
-                  <option>2013</option>
-                </select>
-              </div>
-              <label class="control-label" for="inputSemester1">Semester</label>
-              <div class="controls">
-                <select name="inputSemester1">
-                  <option>Spring</option>
-                  <option>Fall</option>
-                </select>
-              </div>
-              <label class="control-label" for="inputGrade1">Grade</label>
-              <div class="controls">
-                <select name="inputGrade1">
-                  <option>A+</option>
-                  <option>A</option>
-                  <option>A-</option>
-                  <option>B+</option>
-                  <option>B</option>
-                  <option>B-</option>
-                  <option>C+</option>
-                  <option>C</option>
-                </select>
+              <div class="courseChildren1">
+                <label class="control-label" for="inputInstructor1">Instructor</label>
+                <div class="controls">
+                  <input type="text" class="inst" name="inputInstructor1" placeholder="Instructor Name">
+                </div>
+                <label class="control-label" for="inputYear1">Year</label>
+                <div class="controls">
+                  <select name="inputYear1">
+                    <option>2009</option>
+                    <option>2010</option>
+                    <option>2011</option>
+                    <option>2012</option>
+                    <option>2013</option>
+                  </select>
+                </div>
+                <label class="control-label" for="inputSemester1">Semester</label>
+                <div class="controls">
+                  <select name="inputSemester1">
+                    <option>Spring</option>
+                    <option>Fall</option>
+                  </select>
+                </div>
+                <label class="control-label" for="inputGrade1">Grade</label>
+                <div class="controls">
+                  <select name="inputGrade1">
+                    <option>A+</option>
+                    <option>A</option>
+                    <option>A-</option>
+                    <option>B+</option>
+                    <option>B</option>
+                    <option>B-</option>
+                    <option>C+</option>
+                    <option>C</option>
+                  </select>
+                </div>
               </div>
             </div>
           </div>
