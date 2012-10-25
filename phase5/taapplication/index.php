@@ -1,4 +1,22 @@
 <!DOCTYPE html> <!--x.removeChild(x.lastChild)-->
+
+<?php
+  $coursesString = ''; 
+  require_once('dbconnect.php');
+  $db = DbUtil::loginConnection();
+  $stmt = $db -> stmt_init();
+  if($stmt -> prepare("SELECT DISTINCT course FROM sections WHERE semester='Spring' and year_offered=2013") or die(mysqli_error($db))) {
+  $stmt -> execute();
+  $stmt -> bind_result($course);
+  while($stmt -> fetch()){
+    $coursesString = $coursesString . '<option>' . $course . '</option>';
+  }
+
+  $stmt -> close();
+  $db -> close();  
+}
+?>
+
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -13,6 +31,8 @@
   <script type="text/javascript" src="js/jquery-ui-1.8.24.custom.min.js"></script>
   <script type="text/javascript" src="js/bootstrap.min.js"></script>
   <link rel="stylesheet" type="text/css" href="css/ui-lightness/jquery-ui-1.8.24.custom.css">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap-toggle-buttons.css">
+  <script type="text/javascript" src="js/jquery.toggle.buttons.js"></script>
   <style>
   body {
     padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
@@ -20,6 +40,20 @@
   </style>
   <link rel="stylesheet" type="text/css" href="css/style.css">
   <link href="css/bootstrap-responsive.css" rel="stylesheet">
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('.tb').toggleButtons({
+        label: {
+          enabled: "Yes",
+          disabled: "No"
+        },
+        style: {
+          enabled: "success",
+          disabled: "danger"
+        }
+      });
+    })
+  </script>
   <script type="text/javascript">
   $(document).ready(function(){
     var availableCourses = [
@@ -75,11 +109,11 @@
       newdiv.innerHTML =
         '<label class="control-label" for="inputCourse' + curnum + '">Course</label> \
               <div class="controls"> \
-                <input type="text" class="cname" name="inputCourse' + curnum + '" placeholder="Course Name"> \
+                <input type="text" class="cname" name="inputCourse' + curnum + '" placeholder="ex. CS 1110"> \
               </div> <div class="courseChildren' + curnum + '"> \
               <label class="control-label" for="inputInstructor' + curnum + '">Instructor</label> \
               <div class="controls"> \
-                <input type="text" class="inst" name="inputInstructor' + curnum + '" placeholder="Instructor Name"> \
+                <input type="text" class="inst" name="inputInstructor' + curnum + '" placeholder="ex. Sherriff"> \
               </div>\
               <label class="control-label" for="inputYear' + curnum + '">Year</label> \
               <div class="controls"> \
@@ -112,7 +146,7 @@
                 </select> \
               </div></div>';
       $('#gradeInputs div.courseChildren' + (curnum-1)).collapse('hide');
-      $('label[for=inputCourse' + (curnum-1) + ']').text("Click here to expand");
+      $('label[for=inputCourse' + (curnum-1) + ']').text("Click here to show/hide");
       $('label[for=inputCourse' + (curnum-1) + ']').click(function(){
         $($(this).parent().get(0).children[$($(this).parent().get(0)).children().size()-1]).collapse('toggle');
       })
@@ -211,12 +245,12 @@
               <input type="hidden" id="gradeCount" value="1">
               <label class="control-label" for="inputCourse1">Course</label>
               <div class="controls">
-                <input type="text" class="cname" name="inputCourse1" placeholder="Course Name">
+                <input type="text" class="cname" name="inputCourse1" placeholder="ex. CS 1110">
               </div>
               <div class="courseChildren1">
                 <label class="control-label" for="inputInstructor1">Instructor</label>
                 <div class="controls">
-                  <input type="text" class="inst" name="inputInstructor1" placeholder="Instructor Name">
+                  <input type="text" class="inst" name="inputInstructor1" placeholder="ex. Sherriff">
                 </div>
                 <label class="control-label" for="inputYear1">Year</label>
                 <div class="controls">
@@ -259,25 +293,27 @@
               <input type="hidden" id="availabilityCount" value="1">
               <label class="control-label" for="availCourse1">Course</label>
               <div class="controls">
-                <select name="course1">
+                <select name="availCourse1">
                   <!-- USE ARRAY AT BEGINNING SO DON'T HAVE TO REPEAT, ALSO HOW TO SET GLOBAL YEAR SEMESTER? -->
                   <?php 
-                    require_once('dbconnect.php');
-                    $db = DbUtil::loginConnection();
-                    $stmt = $db -> stmt_init();
-
-                    if($stmt -> prepare("SELECT DISTINCT course FROM sections WHERE semester='Spring' and year_offered=2013") or die(mysqli_error($db))) {
-                      $stmt -> execute();
-                      $stmt -> bind_result($course);
-                      while($stmt -> fetch()){
-                        echo '<option>' . $course . '</option>';
-                      }  
-                    }
+                    echo $coursesString;
                    ?>
                 </select>
               </div>
+              <label class="control-label" for="beforeCourse1">TA'd before with</label>
+              <div class="controls">
+                <input type="text" name="beforeCourse1" placeholder="Instructor Name or N/A">
+              </div>
+              <div id="sections1">
+                <label class="control-label" for="checkbox1">GRADER</label>
+                <div class="controls">
+                  <div id="toggle-button" class="tb"><input id="checkbox1" type="checkbox" value="value1" checked></div>
+                </div>
+              </div>
             </div>
           </div>
+          <button class="btn" onclick="return false" id="addAvail">Add Another Course</button>
+          <button class="btn" onclick="return false" id="removeAvail">Remove Last Course</button><br><br>
           <button type="submit" class="btn btn-success">Submit</button>
         </form>
       </div>
