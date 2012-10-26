@@ -1,16 +1,10 @@
-{% extends "base.html" %}
-{% block content %}
 
+{% block content %}
+[
 {% for regrade in regrades %}
-<p class="sticky taped" style="width: 250px;"> 
-<big>{{ regrade.assignment }} </big> <br />
-    Text : {{ regrade.text }} <br />
-    Submitted: {{ regrade.date.strftime('%Y-%m-%d')  }} <br/>
-    Status: {{ regrade.status }} 
-    (<a href ="edit/{{ regrade.key().id() }}">edit </a>)
-        <br /> 
-    --{{ regrade.compid }} </p>
-    print webapp2_extras.json.encode(regrade)
+
+    {"CompId":{{ regrade.compid }},"Assignment":{{regrade.assignment}},"Text":{{regrade.text}},"Status":{{regrade.status}},"Date":{{regrade.date}}}
+    
 {% endfor %}
-</p>
+]
 {% endblock content %}

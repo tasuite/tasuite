@@ -37,8 +37,7 @@ class MainPage(BaseHandler):
 class ViewRegrades(BaseHandler):
     def get(self):
         regrades = Regrades.all()
-        self.response.headers.add_header('content-type', 'application/json', charset='utf-8')
-        self.response.write(json.dumps(regrades))
+        self.render_template('view.html', {'regrades': regrades})
 
 
 class CreateRegrade(BaseHandler):
