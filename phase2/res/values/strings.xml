@@ -7,5 +7,7 @@
     <string name="search_message">CompId Or Blank For All</string>
     <string name="button_send">Go</string>
     <string name="title_activity_search_result">Results</string>
+    <string name="title_activity_search_form_regrade">SearchFormRegradeActivity</string>
+    <string name="title_activity_search_result_regrade">SearchResultRegradeActivity</string>
 
 </resources>

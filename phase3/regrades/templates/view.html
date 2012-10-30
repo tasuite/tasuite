@@ -1,10 +1,3 @@
-
 {% block content %}
-[
-{% for regrade in regrades %}
-
-    {"CompId":{{ regrade.compid }},"Assignment":{{regrade.assignment}},"Text":{{regrade.text}},"Status":{{regrade.status}},"Date":{{regrade.date}}}
-    
-{% endfor %}
-]
+[{% for regrade in regrades %}{"compid":"{{ regrade.compid }}","assignment":"{{regrade.assignment}}","text":"{{regrade.text}}","status":"{{regrade.status}}","date":"{{regrade.date}}"}{% if not loop.last %},{% endif %}{% endfor %}]
 {% endblock content %}
