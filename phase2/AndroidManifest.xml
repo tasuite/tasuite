@@ -37,7 +37,7 @@
         </activity>
         <activity
             android:name=".SearchResultRegradeActivity"
-            android:label="@string/title_activity_search_result_regrade" >
+            android:label="@string/title_activity_search_result_regrade" android:theme="@style/Black">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="edu.virginia.cs.cs4720.adamhunterdan.phase2.searchformregradeactivity" />
@@ -53,7 +53,7 @@
         </activity>
         <activity
             android:name=".SearchResultActivity"
-            android:label="@string/title_activity_search_result" >
+            android:label="@string/title_activity_search_result" android:theme="@style/Black">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="edu.virginia.cs.cs4720.adamhunterdan.phase2.SearchFormActivity" />
