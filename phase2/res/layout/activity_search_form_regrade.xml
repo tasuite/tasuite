@@ -3,21 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal" >
-
-    <EditText android:id="@+id/search_message_regrade"
-        android:layout_weight="1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="@+string/search_message_regrade" />
     
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@+string/button_send"
+        android:text="See Regrades"
         android:onClick="search_regrades" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@+string/button_send"
+        android:text="Home"
         android:onClick="back_to_main" />
 </LinearLayout>

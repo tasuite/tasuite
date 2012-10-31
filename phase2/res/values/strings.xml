@@ -9,5 +9,7 @@
     <string name="title_activity_search_result">Results</string>
     <string name="title_activity_search_form_regrade">SearchFormRegradeActivity</string>
     <string name="title_activity_search_result_regrade">SearchResultRegradeActivity</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_horizontal_main">TA Suite</string>
 
 </resources>

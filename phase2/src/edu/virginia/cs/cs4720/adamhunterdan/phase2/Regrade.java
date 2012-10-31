@@ -7,7 +7,11 @@ public class Regrade {
 	public String status;
 	public String date;
 
-
+	@Override
+	public String toString() {
+		return this.assignment + " (" + this.compid + ") " + status; 
+	}
+	
 	public String getCompid() {
 		return compid;
 	}
@@ -58,8 +62,5 @@ public class Regrade {
 	}
 
 
-	@Override
-	public String toString() {
-		return this.compid; 
-	}
+
 }

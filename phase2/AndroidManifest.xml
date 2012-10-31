@@ -17,17 +17,32 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-        
-        
-        <activity android:name=".SearchFormRegradeActivity" android:label="@string/title_activity_search_form_regrade">
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/title_activity_main" android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity><activity android:name=".SearchResultRegradeActivity" android:label="@string/title_activity_search_result_regrade">
-            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="edu.virginia.cs.cs4720.adamhunterdan.phase2.searchformregradeactivity" />
-        </activity><activity
+        </activity>
+        <activity
+            android:name=".SearchFormRegradeActivity"
+            android:label="@string/title_activity_search_form_regrade" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".SearchResultRegradeActivity"
+            android:label="@string/title_activity_search_result_regrade" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.virginia.cs.cs4720.adamhunterdan.phase2.searchformregradeactivity" />
+        </activity>
+        <activity
             android:name=".SearchFormActivity"
             android:label="@string/title_activity_search_form" >
             <intent-filter>
@@ -42,7 +57,14 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="edu.virginia.cs.cs4720.adamhunterdan.phase2.SearchFormActivity" />
+        </activity><activity android:name=".HorizontalMain" android:label="@string/title_activity_horizontal_main">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
+        
     </application>
 
 </manifest>
