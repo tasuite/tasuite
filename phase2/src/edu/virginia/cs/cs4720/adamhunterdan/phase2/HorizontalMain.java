@@ -1,100 +1,302 @@
 package edu.virginia.cs.cs4720.adamhunterdan.phase2;
 
-import java.io.File;
-
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.res.TypedArray;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.view.Gravity;
-import android.view.Menu;
+import android.provider.MediaStore;
 import android.view.View;
-import android.view.ViewGroup.LayoutParams;
-import android.widget.HorizontalScrollView;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
+import android.widget.BaseAdapter;
+import android.widget.Gallery;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.Toast;
 
+/**
+ * PicSelectActivity presents image gallery - user can select new images to
+ * display within scrolling thumbnail gallery - user can select individual image
+ * to display at larger size
+ * 
+ * Sue Smith Mobiletuts+ Tutorial - Importing and Displaying Images with the
+ * Android Gallery June 2012
+ */
 public class HorizontalMain extends Activity {
 
-	LinearLayout myGallery;
+	// variable for selection intent
+	private final int PICKER = 1;
+	// variable to store the currently selected image
+	private int currentPic = 0;
+	private HorizontalMain thisClass = this;
+	// adapter for gallery view
+	private PicAdapter imgAdapt;
+	// gallery object
+	private Gallery picGallery;
+	// image view for larger display
+	private ImageView picView;
 
+	/**
+	 * instantiate the interactive gallery
+	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+
+		/*
+		 * When the user clicks a thumbnail in the gallery it is displayed at
+		 * larger size
+		 * 
+		 * When the user long-clicks a thumbnail they are taken to their chosen
+		 * image selection activity, either the Android image gallery or a file
+		 * manager application - on returning the chosen image is displayed
+		 * within the thumbnail gallery and larger image view
+		 */
+
+		// call superclass method and set main content view
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.activity_horizontal_main);
 
-		myGallery = (LinearLayout) findViewById(R.id.mygallery);
+		// get the large image view
+		picView = (ImageView) findViewById(R.id.picture);
 
-		String ExternalStorageDirectoryPath = Environment
-				.getExternalStorageDirectory().getAbsolutePath();
+		// get the gallery view
+		picGallery = (Gallery) findViewById(R.id.gallery);
 
-		String targetPath = ExternalStorageDirectoryPath + "/test/";
+		// create a new adapter
+		imgAdapt = new PicAdapter(this);
+		// set the gallery adapter
+		picGallery.setAdapter(imgAdapt);
 
-		Toast.makeText(getApplicationContext(), targetPath, Toast.LENGTH_LONG)
-				.show();
-		File targetDirector = new File(targetPath);
+		// set long click listener for each gallery thumbnail item
+		picGallery.setOnItemLongClickListener(new OnItemLongClickListener() {
+			// handle long clicks
+			public boolean onItemLongClick(AdapterView<?> parent, View v,
+					int position, long id) {
+				// update the currently selected position so that we assign the
+				// imported bitmap to correct item
+				currentPic = position;
+				// take the user to their chosen image selection app (gallery or
+				// file manager)
+				Intent intent;
+				if(currentPic == 0)
+			    	intent = new Intent(thisClass, SearchFormActivity.class);
+				else
+			    	intent = new Intent(thisClass, SearchFormRegradeActivity.class);
+		    	startActivity(intent);
+				
+				return true;
+			}
+		});
 
-		File[] files = targetDirector.listFiles();
-		for (File file : files) {
-			myGallery.addView(insertPhoto(file.getAbsolutePath())); //Here
+		// set the click listener for each item in the thumbnail gallery
+		picGallery.setOnItemClickListener(new OnItemClickListener() {
+			// handle clicks
+			public void onItemClick(AdapterView<?> parent, View v,
+					int position, long id) {
+				// set the larger image view to display the chosen bitmap
+				// calling method of adapter class
+				picView.setImageBitmap(imgAdapt.getPic(position));
+			}
+		});
+	}
+
+	/**
+	 * Base Adapter subclass creates Gallery view - provides method for adding
+	 * new images from user selection - provides method to return bitmaps from
+	 * array
+	 * 
+	 */
+	public class PicAdapter extends BaseAdapter {
+
+		// use the default gallery background image
+		int defaultItemBackground;
+
+		// gallery context
+		private Context galleryContext;
+
+		// array to store bitmaps to display
+		private Bitmap[] imageBitmaps;
+		// placeholder bitmap for empty spaces in gallery
+		Bitmap placeholder;
+
+		// constructor
+		public PicAdapter(Context c) {
+
+			// instantiate context
+			galleryContext = c;
+
+			//!!!!!HERE FOR THE PICTURES!!!!!
+			// create bitmap array
+			imageBitmaps = new Bitmap[2];
+			// decode the placeholder image
+			//!!!!!!!!!!!!!!!!!!!!!!!!
+			// set placeholder as all thumbnail images in the gallery initially
+			
+			imageBitmaps[0] =  BitmapFactory.decodeResource(getResources(),
+					R.drawable.roster);
+			imageBitmaps[1] =  BitmapFactory.decodeResource(getResources(),
+					R.drawable.grades);			
+			// get the styling attributes - use default Andorid system resources
+			TypedArray styleAttrs = galleryContext
+					.obtainStyledAttributes(R.styleable.PicGallery);
+			// get the background resource
+			defaultItemBackground = styleAttrs.getResourceId(
+					R.styleable.PicGallery_android_galleryItemBackground, 0);
+			// recycle attributes
+			styleAttrs.recycle();
+		}
+
+		// BaseAdapter methods
+
+		// return number of data items i.e. bitmap images
+		public int getCount() {
+			return imageBitmaps.length;
+		}
+
+		// return item at specified position
+		public Object getItem(int position) {
+			return position;
+		}
+
+		// return item ID at specified position
+		public long getItemId(int position) {
+			return position;
+		}
+
+		// get view specifies layout and display options for each thumbnail in
+		// the gallery
+		public View getView(int position, View convertView, ViewGroup parent) {
+
+			// create the view
+			ImageView imageView = new ImageView(galleryContext);
+			// specify the bitmap at this position in the array
+			imageView.setImageBitmap(imageBitmaps[position]);
+			// set layout options
+			imageView.setLayoutParams(new Gallery.LayoutParams(300, 200));
+			// scale type within view area
+			imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+			// set default gallery item background
+			imageView.setBackgroundResource(defaultItemBackground);
+			// return the view
+			return imageView;
+		}
+
+		// custom methods for this app
+
+		// helper method to add a bitmap to the gallery when the user chooses
+		// one
+		public void addPic(Bitmap newPic) {
+			// set at currently selected index
+			imageBitmaps[currentPic] = newPic;
+		}
+
+		// return bitmap at specified position for larger display
+		public Bitmap getPic(int posn) {
+			// return bitmap at posn index
+			return imageBitmaps[posn];
 		}
 	}
 
-	View insertPhoto(String path) {
-		Bitmap bm = decodeSampledBitmapFromUri(path, 220, 220);
+	/**
+	 * Handle returning from gallery or file manager image selection - import
+	 * the image bitmap
+	 */
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-		LinearLayout layout = new LinearLayout(getApplicationContext());
-		layout.setLayoutParams(new LayoutParams(250, 250));
-		layout.setGravity(Gravity.CENTER);
+		if (resultCode == RESULT_OK) {
+			// check if we are returning from picture selection
+			if (requestCode == PICKER) {
 
-		ImageView imageView = new ImageView(getApplicationContext());
-		imageView.setLayoutParams(new LayoutParams(220, 220));
-		imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-		imageView.setImageBitmap(bm);
+				// the returned picture URI
+				Uri pickedUri = data.getData();
 
-		layout.addView(imageView);
-		return layout;
-	}
+				// declare the bitmap
+				Bitmap pic = null;
+				// declare the path string
+				String imgPath = "";
 
-	public Bitmap decodeSampledBitmapFromUri(String path, int reqWidth,
-			int reqHeight) {
-		Bitmap bm = null;
+				// retrieve the string using media data
+				String[] medData = { MediaStore.Images.Media.DATA };
+				// query the data
+				Cursor picCursor = managedQuery(pickedUri, medData, null, null,
+						null);
+				if (picCursor != null) {
+					// get the path string
+					int index = picCursor
+							.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+					picCursor.moveToFirst();
+					imgPath = picCursor.getString(index);
+				} else
+					imgPath = pickedUri.getPath();
 
-		// First decode with inJustDecodeBounds=true to check dimensions
-		final BitmapFactory.Options options = new BitmapFactory.Options();
-		options.inJustDecodeBounds = true;
-		BitmapFactory.decodeFile(path, options);
+				// if and else handle both choosing from gallery and from file
+				// manager
 
-		// Calculate inSampleSize
-		options.inSampleSize = calculateInSampleSize(options, reqWidth,
-				reqHeight);
+				// if we have a new URI attempt to decode the image bitmap
+				if (pickedUri != null) {
 
-		// Decode bitmap with inSampleSize set
-		options.inJustDecodeBounds = false;
-		bm = BitmapFactory.decodeFile(path, options);
+					// set the width and height we want to use as maximum
+					// display
+					int targetWidth = 600;
+					int targetHeight = 400;
 
-		return bm;
-	}
+					// sample the incoming image to save on memory resources
 
-	public int calculateInSampleSize(
+					// create bitmap options to calculate and use sample size
+					BitmapFactory.Options bmpOptions = new BitmapFactory.Options();
 
-	BitmapFactory.Options options, int reqWidth, int reqHeight) {
-		// Raw height and width of image
-		final int height = options.outHeight;
-		final int width = options.outWidth;
-		int inSampleSize = 1;
+					// first decode image dimensions only - not the image bitmap
+					// itself
+					bmpOptions.inJustDecodeBounds = true;
+					BitmapFactory.decodeFile(imgPath, bmpOptions);
 
-		if (height > reqHeight || width > reqWidth) {
-			if (width > height) {
-				inSampleSize = Math.round((float) height / (float) reqHeight);
-			} else {
-				inSampleSize = Math.round((float) width / (float) reqWidth);
+					// work out what the sample size should be
+
+					// image width and height before sampling
+					int currHeight = bmpOptions.outHeight;
+					int currWidth = bmpOptions.outWidth;
+
+					// variable to store new sample size
+					int sampleSize = 1;
+
+					// calculate the sample size if the existing size is larger
+					// than target size
+					if (currHeight > targetHeight || currWidth > targetWidth) {
+						// use either width or height
+						if (currWidth > currHeight)
+							sampleSize = Math.round((float) currHeight
+									/ (float) targetHeight);
+						else
+							sampleSize = Math.round((float) currWidth
+									/ (float) targetWidth);
+					}
+					// use the new sample size
+					bmpOptions.inSampleSize = sampleSize;
+
+					// now decode the bitmap using sample options
+					bmpOptions.inJustDecodeBounds = false;
+
+					// get the file as a bitmap
+					pic = BitmapFactory.decodeFile(imgPath, bmpOptions);
+
+					// pass bitmap to ImageAdapter to add to array
+					imgAdapt.addPic(pic);
+					// redraw the gallery thumbnails to reflect the new addition
+					picGallery.setAdapter(imgAdapt);
+
+					// display the newly selected image at larger size
+					picView.setImageBitmap(pic);
+					// scale options
+					picView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+				}
 			}
 		}
-
-		return inSampleSize;
+		// superclass method
+		super.onActivityResult(requestCode, resultCode, data);
 	}
-
 }

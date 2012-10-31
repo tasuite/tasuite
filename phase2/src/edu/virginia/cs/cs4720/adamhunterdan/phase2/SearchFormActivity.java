@@ -32,7 +32,7 @@ public class SearchFormActivity extends Activity {
     	
     }
     public void back_to_main(View view){
-    	Intent intent = new Intent(this, MainActivity.class);
+    	Intent intent = new Intent(this, HorizontalMain.class);
     	startActivity(intent);
     	
     }
