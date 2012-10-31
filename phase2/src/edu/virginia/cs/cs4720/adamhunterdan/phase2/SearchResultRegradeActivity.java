@@ -35,6 +35,7 @@ public class SearchResultRegradeActivity extends Activity {
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
+    	super.setTheme( android.R.style.Theme_Black );
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_result_regrade);
         Intent intent = getIntent();

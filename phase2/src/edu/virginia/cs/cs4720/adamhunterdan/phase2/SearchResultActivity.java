@@ -40,6 +40,8 @@ public class SearchResultActivity extends Activity {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+		super.setTheme(android.R.style.Theme_Black);
+
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_search_result);
 
@@ -53,12 +55,12 @@ public class SearchResultActivity extends Activity {
 
 		adapter = new ArrayAdapter<Student>(this,
 				android.R.layout.simple_list_item_1, android.R.id.text1, values);
-		
+
 		studentList.setAdapter(adapter);
-		
+
 		new GetStudentsTask().execute(webserviceURL);
 	}
-	
+
 	public static String getJSONfromURL(String url) {
 
 		// initialize
@@ -103,16 +105,16 @@ public class SearchResultActivity extends Activity {
 		@Override
 		protected String doInBackground(String... params) {
 			String url = params[0];
-			
+
 			ArrayList<Student> lcs = new ArrayList<Student>();
-			
-			try{
+
+			try {
 				String webJSON = getJSONfromURL(url);
 				Gson gson = new Gson();
-				
+
 				JsonParser parser = new JsonParser();
 				JsonArray Jarray = parser.parse(webJSON).getAsJsonArray();
-				
+
 				for (JsonElement obj : Jarray) {
 					Student s = gson.fromJson(obj, Student.class);
 					lcs.add(s);
@@ -120,11 +122,11 @@ public class SearchResultActivity extends Activity {
 			} catch (Exception e) {
 				Log.e("Web Service", "JSONPARSE: " + e.toString());
 			}
-			
+
 			values.clear();
-			
+
 			values.addAll(lcs);
-			
+
 			return "Done!";
 		}
 
