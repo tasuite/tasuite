@@ -12,21 +12,23 @@ public final class R {
     }
     public static final class drawable {
         public static final int android_background=0x7f020000;
-        public static final int announcment=0x7f020001;
+        public static final int announcement=0x7f020001;
         public static final int grades=0x7f020002;
         public static final int ic_action_search=0x7f020003;
         public static final int ic_launcher=0x7f020004;
         public static final int officehours=0x7f020005;
+        public static final int roster=0x7f020006;
     }
     public static final class id {
-        public static final int Button01=0x7f070003;
-        public static final int blah=0x7f070001;
-        public static final int menu_settings=0x7f070007;
-        public static final int mygallery=0x7f070000;
-        public static final int regrade=0x7f070002;
-        public static final int regradeList=0x7f070006;
-        public static final int search_message=0x7f070004;
-        public static final int studentList=0x7f070005;
+        public static final int Button01=0x7f070004;
+        public static final int blah=0x7f070002;
+        public static final int gallery=0x7f070000;
+        public static final int menu_settings=0x7f070008;
+        public static final int picture=0x7f070001;
+        public static final int regrade=0x7f070003;
+        public static final int regradeList=0x7f070007;
+        public static final int search_message=0x7f070005;
+        public static final int studentList=0x7f070006;
     }
     public static final class layout {
         public static final int activity_horizontal_main=0x7f030000;
@@ -61,4 +63,25 @@ public final class R {
         public static final int AppTheme=0x7f050000;
         public static final int Black=0x7f050001;
     }
+    public static final class styleable {
+        /** Attributes that can be used with a PicGallery.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #PicGallery_android_galleryItemBackground edu.virginia.cs.cs4720.adamhunterdan.phase2:android_galleryItemBackground}</code></td><td></td></tr>
+           </table>
+           @see #PicGallery_android_galleryItemBackground
+         */
+        public static final int[] PicGallery = {
+            0x0101004c
+        };
+        /**
+          <p>This symbol is the offset where the {@link edu.virginia.cs.cs4720.adamhunterdan.phase2.R.attr#android_galleryItemBackground}
+          attribute's value can be found in the {@link #PicGallery} array.
+          @attr name android:android_galleryItemBackground
+        */
+        public static final int PicGallery_android_galleryItemBackground = 0;
+    };
 }
