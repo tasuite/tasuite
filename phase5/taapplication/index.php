@@ -98,6 +98,91 @@
     $('.inst').autocomplete({
       source: availableInstructors
     })
+    $('#ac1').change(function(){
+      $.ajax({
+        type: "POST",
+        url: 'getSections.php',
+        data: {cname : $('#ac1').val()},
+        success: function(data) {
+          $('#sections1').html(data);
+          $('#sections1 .tb').toggleButtons({
+            label: {
+              enabled: "Yes",
+              disabled: "No"
+            },
+            style: {
+              enabled: "success",
+              disabled: "danger"
+            }
+          });
+        }
+      })
+    })
+    $('#addAvail').click(function(){
+      var curnum = parseInt(document.getElementById('availabilityCount').value) + 1
+      document.getElementById('availabilityCount').value = curnum + "";
+      var newdiv = document.createElement('div');
+      newdiv.setAttribute('class', 'control-group');
+      newdiv.innerHTML = '<label class="control-label" for="availCourse' + curnum + '">Course</label>\
+              <div class="controls">\
+                <select name="availCourse1" id="ac' + curnum + '">\
+                  <?php echo $coursesString; ?>\
+                </select>\
+              </div>\
+              <label class="control-label" for="beforeCourse' + curnum + '">TA\'d before with</label>\
+              <div class="controls">\
+                <input type="text" name="beforeCourse' + curnum + '" placeholder="Instructor Name or N/A">\
+              </div>\
+              <div id="sections' + curnum + '">\
+                <label class="control-label" for="section1">GRADER</label>\
+                <div class="controls">\
+                  <div id="toggle-button" class="tb"><input name="section1" type="checkbox" value="GRADER"></div>\
+                </div>\
+              </div>';
+      $('#availabilityInputs div.availChildren' + (curnum-1)).collapse('hide');
+      $('label[for=availCourse' + (curnum-1) + ']').text("Click here to show/hide");
+      $('label[for=availCourse' + (curnum-1) + ']').click(function(){
+        $($(this).parent().get(0).children[$($(this).parent().get(0)).children().size()-1]).collapse('toggle');
+      });
+      document.getElementById('availabilityInputs').appendChild(newdiv);
+      $('#availabilityInputs div.control-group').last().hide().fadeIn(500);
+      $('.inst').autocomplete({
+        source: availableInstructors
+      });
+      $('#sections' + curnum + ' .tb').toggleButtons({
+        label: {
+          enabled: "Yes",
+          disabled: "No"
+        },
+        style: {
+          enabled: "success",
+          disabled: "danger"
+        }
+      });
+      $('#ac' + curnum + '').change(function(){
+        $.ajax({
+          type: "POST",
+          url: 'getSections.php',
+          data: {cname : $('#ac' + curnum + '').val()},
+          success: function(data) {
+            $('#sections' + curnum + '').html(data);
+            $('#sections' + curnum + ' .tb').toggleButtons({
+              label: {
+                enabled: "Yes",
+                disabled: "No"
+              },
+              style: {
+                enabled: "success",
+                disabled: "danger"
+              }
+            });
+          }
+        })
+      })
+    })
+    $('#removeAvail').click(function(){
+      document.getElementById('availabilityInputs').removeChild(document.getElementById('availabilityInputs').lastChild);
+    })
     $('#remove').click(function(){
       document.getElementById('gradeInputs').removeChild(document.getElementById('gradeInputs').lastChild);
     })
@@ -175,11 +260,6 @@
         <a style="color: white" class="brand" href="#">TA Application</a>
         <div class="nav-collapse collapse">
           <ul class="nav">
-<!--            <li><a href="http://www.mail.virginia.edu" target="_blank">UVa Mail</a></li>
-            <li><a href="http://collab.itc.virginia.edu/portal" target="_blank">Collab</a></li>
-            <li><a href="http://stardock.cs.virginia.edu/redmine" target="_blank">Redmine</a></li>
-            <li><a href="http://www.virginia.edu/sis" target="_blank">SIS</a></li>
-            <li><a href="http://rabi.phys.virginia.edu/mySIS/CS" target="_blank">Anti-SIS</a></li> -->
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -189,7 +269,7 @@
   <div class="container">
     <div class="row-fluid">
       <div class="span10">
-        <form class="form-horizontal" method="post">
+        <form class="form-horizontal" method="post" action="submit.php">
           <legend>Personal Information</legend>
           <div class="control-group">
             <label class="control-label" for="inputFname">First Name</label>
@@ -293,21 +373,22 @@
               <input type="hidden" id="availabilityCount" value="1">
               <label class="control-label" for="availCourse1">Course</label>
               <div class="controls">
-                <select name="availCourse1">
-                  <!-- USE ARRAY AT BEGINNING SO DON'T HAVE TO REPEAT, ALSO HOW TO SET GLOBAL YEAR SEMESTER? -->
+                <select name="availCourse1" id="ac1">
                   <?php 
                     echo $coursesString;
                    ?>
                 </select>
               </div>
-              <label class="control-label" for="beforeCourse1">TA'd before with</label>
-              <div class="controls">
-                <input type="text" name="beforeCourse1" placeholder="Instructor Name or N/A">
-              </div>
-              <div id="sections1">
-                <label class="control-label" for="checkbox1">GRADER</label>
+              <div class="availChildren1">
+                <label class="control-label" for="beforeCourse1">TA'd before with</label>
                 <div class="controls">
-                  <div id="toggle-button" class="tb"><input id="checkbox1" type="checkbox" value="value1" checked></div>
+                  <input type="text" class="inst" name="beforeCourse1" placeholder="Instructor Name or N/A">
+                </div>
+                <div id="sections1">
+                  <label class="control-label" for="section1">GRADER</label>
+                  <div class="controls">
+                    <div id="toggle-button" class="tb"><input name="section1" type="checkbox" value="GRADER"></div>
+                  </div>
                 </div>
               </div>
             </div>
