@@ -7,7 +7,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 
-public class SearchFormActivity extends Activity {
+public class RosterSearch extends Activity {
 	
 	public final static String EXTRA_MESSAGE = "edu.virginia.cs.cs4720.adamhunterdan.phase2";
 
@@ -24,7 +24,7 @@ public class SearchFormActivity extends Activity {
     }
     
     public void search(View view){
-    	Intent intent = new Intent(this, SearchResultActivity.class);
+    	Intent intent = new Intent(this, RosterResult.class);
     	EditText editText = (EditText) findViewById(R.id.search_message);
     	String searchParam = editText.getText().toString();
     	intent.putExtra(EXTRA_MESSAGE, searchParam);

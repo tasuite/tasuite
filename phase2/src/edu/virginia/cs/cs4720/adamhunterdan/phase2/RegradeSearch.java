@@ -7,7 +7,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 
-public class SearchFormRegradeActivity extends Activity {
+public class RegradeSearch extends Activity {
 	public final static String EXTRA_MESSAGE = "edu.virginia.cs.cs4720.adamhunterdan.phase2";
 
     @Override
@@ -22,7 +22,7 @@ public class SearchFormRegradeActivity extends Activity {
         return true;
     }
     public void search_regrades(View view){
-    	Intent intent = new Intent(this, SearchResultRegradeActivity.class);
+    	Intent intent = new Intent(this, RegradeResult.class);
     	startActivity(intent);
     	
     }

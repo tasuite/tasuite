@@ -25,7 +25,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 
-public class SearchResultActivity extends Activity {
+public class RosterResult extends Activity {
 
 	ListView studentList;
 	String webserviceURL = "http://plato.cs.virginia.edu/~atc4cy/tasuite/phase1/rest/student/view/";
@@ -47,7 +47,7 @@ public class SearchResultActivity extends Activity {
 
 		Intent intent = getIntent();
 		String message = intent
-				.getStringExtra(SearchFormActivity.EXTRA_MESSAGE);
+				.getStringExtra(RosterSearch.EXTRA_MESSAGE);
 		webserviceURL += message;
 
 		studentList = (ListView) findViewById(R.id.studentList);

@@ -11,5 +11,9 @@
     <string name="title_activity_search_result_regrade">SearchResultRegradeActivity</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_horizontal_main">TA Suite</string>
+    <string name="title_activity_announcements">Announcements</string>
+    <string name="title_activity_office_hour_queue">OfficeHourQueue</string>
+    <string name="title_activity_calendar">Calendar</string>
+    <string name="title_activity_analytics">Analytics</string>
 
 </resources>
