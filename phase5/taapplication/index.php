@@ -1,4 +1,4 @@
-<!DOCTYPE html> <!--x.removeChild(x.lastChild)-->
+<!DOCTYPE html>
 
 <?php
   $coursesString = ''; 
@@ -125,7 +125,7 @@
       newdiv.setAttribute('class', 'control-group');
       newdiv.innerHTML = '<label class="control-label" for="availCourse' + curnum + '">Course</label>\
               <div class="controls">\
-                <select name="availCourse1" id="ac' + curnum + '">\
+                <select name="availCourse' + curnum + '" id="ac' + curnum + '">\
                   <?php echo $coursesString; ?>\
                 </select>\
               </div>\
@@ -268,7 +268,7 @@
 
   <div class="container">
     <div class="row-fluid">
-      <div class="span10">
+      <div class="span6">
         <form class="form-horizontal" method="post" action="submit.php">
           <legend>Personal Information</legend>
           <div class="control-group">
@@ -365,8 +365,8 @@
               </div>
             </div>
           </div>
-          <button class="btn" onclick="return false" id="add">Add Another Course</button>
-          <button class="btn" onclick="return false" id="remove">Remove Last Course</button><br><br>
+          <button class="btn btn-small" onclick="return false" id="add">Add Another Course</button>
+          <button class="btn btn-small" onclick="return false" id="remove">Remove Last Course</button><br><br>
           <legend>Availability</legend>
           <div id="availabilityInputs">
             <div class="control-group">
@@ -393,10 +393,15 @@
               </div>
             </div>
           </div>
-          <button class="btn" onclick="return false" id="addAvail">Add Another Course</button>
-          <button class="btn" onclick="return false" id="removeAvail">Remove Last Course</button><br><br>
+          <button class="btn btn-small" onclick="return false" width="40" id="addAvail">Add Another Course</button>
+          <button class="btn btn-small" onclick="return false" width="40" id="removeAvail">Remove Last Course</button><br><br>
           <button type="submit" class="btn btn-success">Submit</button>
         </form>
+      </div>
+      <div class="span6">
+        <img src="img/virginia-sabres-color.jpg" width="75%" height="75%" style="display: block; margin-left: auto; margin-right: auto">
+        <img src="img/uva-computer-science.gif" style="display: block; margin-left: auto; margin-right: auto">
+
       </div>
     </div>
   </div>
