@@ -27,7 +27,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 
-public class SearchResultRegradeActivity extends Activity {
+public class RegradeResult extends Activity {
 	ListView regradeList;
 	String webserviceURL = "http://tasuite.appspot.com/view";
 	ArrayList<Regrade> values;
@@ -40,7 +40,7 @@ public class SearchResultRegradeActivity extends Activity {
         setContentView(R.layout.activity_search_result_regrade);
         Intent intent = getIntent();
 		String message = intent
-				.getStringExtra(SearchFormRegradeActivity.EXTRA_MESSAGE);
+				.getStringExtra(RegradeSearch.EXTRA_MESSAGE);
 		//webserviceURL += message;
 
 		regradeList = (ListView) findViewById(R.id.regradeList);

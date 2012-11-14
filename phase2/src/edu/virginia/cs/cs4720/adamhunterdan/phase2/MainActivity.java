@@ -21,12 +21,12 @@ public class MainActivity extends Activity {
         return true;
     }
     public void go_regrade(View view){
-    	Intent intent = new Intent(this, SearchFormRegradeActivity.class);
+    	Intent intent = new Intent(this, RegradeSearch.class);
     	startActivity(intent);
     	
     }
     public void go_student(View view){
-    	Intent intent = new Intent(this, SearchFormActivity.class);
+    	Intent intent = new Intent(this, RosterSearch.class);
     	startActivity(intent);
     	
     }
