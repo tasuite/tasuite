@@ -74,7 +74,8 @@
         </activity>
         <activity
             android:name="edu.virginia.cs.cs4720.adamhunterdan.phase2.Announcements"
-            android:label="@string/title_activity_announcements" >
+            android:label="@string/title_activity_announcements" 
+            android:theme="@style/Black" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
