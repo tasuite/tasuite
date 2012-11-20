@@ -260,6 +260,7 @@
         <a style="color: white" class="brand" href="#">TA Application</a>
         <div class="nav-collapse collapse">
           <ul class="nav">
+            
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -322,7 +323,7 @@
           <legend>Grades</legend>
           <div id="gradeInputs">
             <div class="control-group">
-              <input type="hidden" id="gradeCount" value="1">
+              <input type="hidden" id="gradeCount" name="gradeCount" value="1">
               <label class="control-label" for="inputCourse1">Course</label>
               <div class="controls">
                 <input type="text" class="cname" name="inputCourse1" placeholder="ex. CS 1110">
@@ -370,7 +371,7 @@
           <legend>Availability</legend>
           <div id="availabilityInputs">
             <div class="control-group">
-              <input type="hidden" id="availabilityCount" value="1">
+              <input type="hidden" id="availabilityCount" name="availCount" value="1">
               <label class="control-label" for="availCourse1">Course</label>
               <div class="controls">
                 <select name="availCourse1" id="ac1">
@@ -401,7 +402,7 @@
       <div class="span6">
         <img src="img/virginia-sabres-color.jpg" width="75%" height="75%" style="display: block; margin-left: auto; margin-right: auto">
         <img src="img/uva-computer-science.gif" style="display: block; margin-left: auto; margin-right: auto">
-
+		
       </div>
     </div>
   </div>

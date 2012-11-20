@@ -1,12 +1,40 @@
 <?php 
 require_once('dbconnect.php');
-
+require_once('globals.php');
+/*
 $db = DbUtil::loginConnection();
 $stmt = $db -> stmt_init();
+	if($stmt -> prepare("INSERT INTO applicant VALUES (?, ?, ?, ?, ?, ?)") or die(mysqli_error($db))) {
+		$stmt -> bind_param("ssssss", $_POST['inputCompid'], $_POST['inputFname'], $_POST['inputLname'], $_POST['inputStatement'], $_POST['inputYear'], $_POST['inputSchool']);
+		$stmt -> execute();
+		$db -> commit();
+	}
+
+
+for ($i=1; $i <= $_POST['gradeCount']+0 ; $i++) { 
+	$stmt = $db -> stmt_init();
+
+	if ($stmt -> prepare("INSERT INTO grades VALUES (?, ?, ?, ?, ?, ?)") or die(mysqli_error($db))) {
+		$stmt -> bind_param("ssssss", //TODO)
+		$stmt -> execute();
+		$db -> commit();
+	}
+}
+
+for ($i=1; $i < $_POST['availCount']; $i++) { 
+	$stmt = $db -> stmt_init();
+	if ($stmt -> prepare("INSERT INTO availability VALUES (?,?)")) {
+		$stmt -> bind_param("ss", //TODO)
+		$stmt -> execute();
+		$db -> commit();
+	}
+		
+}
 
 $db -> close();
-$stmt -> close();
+$stmt -> close();*/
 ?>
+
 <html>
 <head>
 	<title>Thank You</title>
@@ -41,9 +69,11 @@ $stmt -> close();
 		<div class="row-fluid">
 			<div class="span10">
 				<legend>Thank You</legend>
-				<p>
-					Your application has been submitted.  You may update your application at any time.
-				</p>
+				<div class="alert alert-success">
+					Your application has been submitted.  You may update your application at any time by returning to the form.
+				</div>
+				<form action="index.php" method="POST"><button class="btn btn-success">Go Back</button></form>
+				<form action="http://its.virginia.edu/netbadge/logout.html" method="POST"><button class="btn btn-danger">Netbadge Logout</button></form>
 				<p>	
 					<?php 
 					printArray($_POST);
