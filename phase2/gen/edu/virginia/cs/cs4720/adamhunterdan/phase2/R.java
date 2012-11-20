@@ -23,6 +23,7 @@ public final class R {
         public static final int white_wallpaper=0x7f020009;
     }
     public static final class id {
+<<<<<<< HEAD
         public static final int Button01=0x7f070004;
         public static final int blah=0x7f070002;
         public static final int gallery=0x7f070000;
@@ -32,6 +33,18 @@ public final class R {
         public static final int regradeList=0x7f070007;
         public static final int search_message=0x7f070005;
         public static final int studentList=0x7f070006;
+=======
+        public static final int AnnouncementsList=0x7f070000;
+        public static final int Button01=0x7f070005;
+        public static final int blah=0x7f070003;
+        public static final int gallery=0x7f070001;
+        public static final int menu_settings=0x7f070009;
+        public static final int picture=0x7f070002;
+        public static final int regrade=0x7f070004;
+        public static final int regradeList=0x7f070008;
+        public static final int search_message=0x7f070006;
+        public static final int studentList=0x7f070007;
+>>>>>>> Adam-Branch
     }
     public static final class layout {
         public static final int activity_analytics=0x7f030000;
