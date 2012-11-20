@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
     <string name="app_name">Phase2</string>
@@ -15,5 +16,6 @@
     <string name="title_activity_office_hour_queue">OfficeHourQueue</string>
     <string name="title_activity_calendar">Calendar</string>
     <string name="title_activity_analytics">Analytics</string>
+    <string name="title_activity_calendar_sample">CalendarSampleActivity</string>
 
 </resources>
