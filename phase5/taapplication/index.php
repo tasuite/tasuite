@@ -388,7 +388,7 @@
                 <div id="sections1">
                   <label class="control-label" for="section1">GRADER</label>
                   <div class="controls">
-                    <div id="toggle-button" class="tb"><input name="section1" type="checkbox" value="GRADER"></div>
+                    <div id="toggle-button" class="tb"><input name="section1" type="checkbox" value="17436"></div>
                   </div>
                 </div>
               </div>

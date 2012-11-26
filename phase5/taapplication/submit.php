@@ -1,7 +1,7 @@
 <?php 
 require_once('dbconnect.php');
 require_once('globals.php');
-/*
+
 $db = DbUtil::loginConnection();
 $stmt = $db -> stmt_init();
 	if($stmt -> prepare("INSERT INTO applicant VALUES (?, ?, ?, ?, ?, ?)") or die(mysqli_error($db))) {
@@ -13,26 +13,31 @@ $stmt = $db -> stmt_init();
 
 for ($i=1; $i <= $_POST['gradeCount']+0 ; $i++) { 
 	$stmt = $db -> stmt_init();
-
 	if ($stmt -> prepare("INSERT INTO grades VALUES (?, ?, ?, ?, ?, ?)") or die(mysqli_error($db))) {
-		$stmt -> bind_param("ssssss", //TODO)
+
+		$stmt -> bind_param("ssssss", $_POST['inputCompid'], $_POST['inputCourse'.$i], $_POST['inputGrade'.$i], $_POST['inputInstructor'.$i], $_POST['inputSemester'.$i], $_POST['inputYear'.$i]);
 		$stmt -> execute();
 		$db -> commit();
 	}
 }
 
-for ($i=1; $i < $_POST['availCount']; $i++) { 
-	$stmt = $db -> stmt_init();
-	if ($stmt -> prepare("INSERT INTO availability VALUES (?,?)")) {
-		$stmt -> bind_param("ss", //TODO)
-		$stmt -> execute();
-		$db -> commit();
+foreach ($_POST as $key => $value) {
+	echo $key . '<br>';
+	if(!(strpos($key, 'section') === false)) {
+		echo 'here';
+		$stmt = $db -> stmt_init();
+		if($stmt -> prepare("INSERT INTO availability VALUES (?,?)") or die(mysqli_error($db))) {
+			$stmt -> bind_param("ss", $value,  $_POST['inputCompid']);
+			echo 'here';
+			$stmt -> execute();
+			$db -> commit();
+			echo 'here';
+		}
 	}
-		
 }
 
 $db -> close();
-$stmt -> close();*/
+$stmt -> close();
 ?>
 
 <html>
