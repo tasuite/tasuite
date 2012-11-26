@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Phase2</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_search_form">SearchFormActivity</string>
+    <string name="search_message">CompId Or Blank For All</string>
+    <string name="button_send">Go</string>
+    <string name="title_activity_search_result">Results</string>
+    <string name="title_activity_search_form_regrade">SearchFormRegradeActivity</string>
+    <string name="title_activity_search_result_regrade">SearchResultRegradeActivity</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_horizontal_main">TA Suite</string>
+    <string name="title_activity_announcements">Announcements</string>
+    <string name="title_activity_office_hour_queue">OfficeHourQueue</string>
+    <string name="title_activity_calendar">Calendar</string>
+    <string name="title_activity_analytics">Analytics</string>
+    <string name="title_activity_calendar_sample">CalendarSampleActivity</string>
+
+</resources>
