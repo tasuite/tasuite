@@ -1,0 +1,9 @@
+<resources>
+
+    <style name="AppTheme" parent="android:style/Theme.Black">
+        <item name="android:background">@drawable/white_wallpaper</item>
+    </style>
+
+    <style name="Black" parent="android:style/Theme.Black"></style>
+
+</resources>
