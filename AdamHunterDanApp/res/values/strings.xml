@@ -17,5 +17,8 @@
     <string name="title_activity_calendar">Calendar</string>
     <string name="title_activity_analytics">Analytics</string>
     <string name="title_activity_calendar_sample">CalendarSampleActivity</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="title_activity_introduction">TA Suite</string>
 
 </resources>

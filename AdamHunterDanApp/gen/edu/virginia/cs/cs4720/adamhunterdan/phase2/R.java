@@ -9,6 +9,17 @@ package edu.virginia.cs.cs4720.adamhunterdan.phase2;
 
 public final class R {
     public static final class attr {
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int buttonBarButtonStyle=0x7f010001;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int buttonBarStyle=0x7f010000;
+    }
+    public static final class color {
+        public static final int black_overlay=0x7f040000;
     }
     public static final class drawable {
         public static final int analytics=0x7f020000;
@@ -18,22 +29,24 @@ public final class R {
         public static final int grades=0x7f020004;
         public static final int ic_action_search=0x7f020005;
         public static final int ic_launcher=0x7f020006;
-        public static final int officehours=0x7f020007;
-        public static final int roster=0x7f020008;
-        public static final int white_wallpaper=0x7f020009;
+        public static final int logo=0x7f020007;
+        public static final int officehours=0x7f020008;
+        public static final int roster=0x7f020009;
+        public static final int white_wallpaper=0x7f02000a;
     }
     public static final class id {
-        public static final int AnnouncementsList=0x7f070000;
-        public static final int Button01=0x7f070005;
-        public static final int blah=0x7f070003;
-        public static final int button1=0x7f070006;
-        public static final int gallery=0x7f070001;
-        public static final int menu_settings=0x7f07000a;
-        public static final int picture=0x7f070002;
-        public static final int regrade=0x7f070004;
-        public static final int regradeList=0x7f070009;
-        public static final int search_message=0x7f070007;
-        public static final int studentList=0x7f070008;
+        public static final int AnnouncementsList=0x7f080000;
+        public static final int Button01=0x7f080006;
+        public static final int blah=0x7f080004;
+        public static final int button1=0x7f080007;
+        public static final int gallery=0x7f080001;
+        public static final int imageView1=0x7f080003;
+        public static final int menu_settings=0x7f08000b;
+        public static final int picture=0x7f080002;
+        public static final int regrade=0x7f080005;
+        public static final int regradeList=0x7f08000a;
+        public static final int search_message=0x7f080008;
+        public static final int studentList=0x7f080009;
     }
     public static final class layout {
         public static final int activity_analytics=0x7f030000;
@@ -41,49 +54,93 @@ public final class R {
         public static final int activity_calendar=0x7f030002;
         public static final int activity_calendar_sample=0x7f030003;
         public static final int activity_horizontal_main=0x7f030004;
-        public static final int activity_main=0x7f030005;
-        public static final int activity_office_hour_queue=0x7f030006;
-        public static final int activity_search_form=0x7f030007;
-        public static final int activity_search_form_regrade=0x7f030008;
-        public static final int activity_search_result=0x7f030009;
-        public static final int activity_search_result_regrade=0x7f03000a;
+        public static final int activity_introduction=0x7f030005;
+        public static final int activity_main=0x7f030006;
+        public static final int activity_office_hour_queue=0x7f030007;
+        public static final int activity_search_form=0x7f030008;
+        public static final int activity_search_form_regrade=0x7f030009;
+        public static final int activity_search_result=0x7f03000a;
+        public static final int activity_search_result_regrade=0x7f03000b;
     }
     public static final class menu {
-        public static final int activity_analytics=0x7f060000;
-        public static final int activity_announcements=0x7f060001;
-        public static final int activity_calendar=0x7f060002;
-        public static final int activity_calendar_sample=0x7f060003;
-        public static final int activity_horizontal_main=0x7f060004;
-        public static final int activity_main=0x7f060005;
-        public static final int activity_office_hour_queue=0x7f060006;
-        public static final int activity_search_form=0x7f060007;
-        public static final int activity_search_form_regrade=0x7f060008;
-        public static final int activity_search_result=0x7f060009;
-        public static final int activity_search_result_regrade=0x7f06000a;
+        public static final int activity_analytics=0x7f070000;
+        public static final int activity_announcements=0x7f070001;
+        public static final int activity_calendar=0x7f070002;
+        public static final int activity_calendar_sample=0x7f070003;
+        public static final int activity_horizontal_main=0x7f070004;
+        public static final int activity_introduction=0x7f070005;
+        public static final int activity_main=0x7f070006;
+        public static final int activity_office_hour_queue=0x7f070007;
+        public static final int activity_search_form=0x7f070008;
+        public static final int activity_search_form_regrade=0x7f070009;
+        public static final int activity_search_result=0x7f07000a;
+        public static final int activity_search_result_regrade=0x7f07000b;
     }
     public static final class string {
-        public static final int app_name=0x7f040000;
-        public static final int button_send=0x7f040005;
-        public static final int hello_world=0x7f040001;
-        public static final int menu_settings=0x7f040002;
-        public static final int search_message=0x7f040004;
-        public static final int title_activity_analytics=0x7f04000e;
-        public static final int title_activity_announcements=0x7f04000b;
-        public static final int title_activity_calendar=0x7f04000d;
-        public static final int title_activity_calendar_sample=0x7f04000f;
-        public static final int title_activity_horizontal_main=0x7f04000a;
-        public static final int title_activity_main=0x7f040009;
-        public static final int title_activity_office_hour_queue=0x7f04000c;
-        public static final int title_activity_search_form=0x7f040003;
-        public static final int title_activity_search_form_regrade=0x7f040007;
-        public static final int title_activity_search_result=0x7f040006;
-        public static final int title_activity_search_result_regrade=0x7f040008;
+        public static final int app_name=0x7f050000;
+        public static final int button_send=0x7f050005;
+        public static final int dummy_button=0x7f050011;
+        public static final int dummy_content=0x7f050010;
+        public static final int hello_world=0x7f050001;
+        public static final int menu_settings=0x7f050002;
+        public static final int search_message=0x7f050004;
+        public static final int title_activity_analytics=0x7f05000e;
+        public static final int title_activity_announcements=0x7f05000b;
+        public static final int title_activity_calendar=0x7f05000d;
+        public static final int title_activity_calendar_sample=0x7f05000f;
+        public static final int title_activity_horizontal_main=0x7f05000a;
+        public static final int title_activity_introduction=0x7f050012;
+        public static final int title_activity_main=0x7f050009;
+        public static final int title_activity_office_hour_queue=0x7f05000c;
+        public static final int title_activity_search_form=0x7f050003;
+        public static final int title_activity_search_form_regrade=0x7f050007;
+        public static final int title_activity_search_result=0x7f050006;
+        public static final int title_activity_search_result_regrade=0x7f050008;
     }
     public static final class style {
-        public static final int AppTheme=0x7f050000;
-        public static final int Black=0x7f050001;
+        public static final int AppTheme=0x7f060000;
+        public static final int Black=0x7f060001;
+        public static final int ButtonBar=0x7f060003;
+        public static final int ButtonBarButton=0x7f060002;
+        public static final int FullscreenActionBarStyle=0x7f060005;
+        public static final int FullscreenTheme=0x7f060004;
     }
     public static final class styleable {
+        /** Attributes that can be used with a ButtonBarContainerTheme.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #ButtonBarContainerTheme_buttonBarButtonStyle edu.virginia.cs.cs4720.adamhunterdan.phase2:buttonBarButtonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #ButtonBarContainerTheme_buttonBarStyle edu.virginia.cs.cs4720.adamhunterdan.phase2:buttonBarStyle}</code></td><td></td></tr>
+           </table>
+           @see #ButtonBarContainerTheme_buttonBarButtonStyle
+           @see #ButtonBarContainerTheme_buttonBarStyle
+         */
+        public static final int[] ButtonBarContainerTheme = {
+            0x7f010000, 0x7f010001
+        };
+        /**
+          <p>This symbol is the offset where the {@link edu.virginia.cs.cs4720.adamhunterdan.phase2.R.attr#buttonBarButtonStyle}
+          attribute's value can be found in the {@link #ButtonBarContainerTheme} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:buttonBarButtonStyle
+        */
+        public static final int ButtonBarContainerTheme_buttonBarButtonStyle = 1;
+        /**
+          <p>This symbol is the offset where the {@link edu.virginia.cs.cs4720.adamhunterdan.phase2.R.attr#buttonBarStyle}
+          attribute's value can be found in the {@link #ButtonBarContainerTheme} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:buttonBarStyle
+        */
+        public static final int ButtonBarContainerTheme_buttonBarStyle = 0;
         /** Attributes that can be used with a PicGallery.
            <p>Includes the following attributes:</p>
            <table>
