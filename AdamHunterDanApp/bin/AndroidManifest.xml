@@ -15,7 +15,7 @@
         android:targetSdkVersion="15" />
 
     <application
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
@@ -32,30 +32,10 @@
             android:name="edu.virginia.cs.cs4720.adamhunterdan.phase2.HorizontalMain"
             android:label="@string/title_activity_horizontal_main"
             android:theme="@style/Black" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="edu.virginia.cs.cs4720.adamhunterdan.phase2.MainActivity"
-            android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name="edu.virginia.cs.cs4720.adamhunterdan.phase2.RegradeSearch"
             android:label="@string/title_activity_search_form_regrade" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name="edu.virginia.cs.cs4720.adamhunterdan.phase2.RegradeResult"
@@ -68,11 +48,6 @@
         <activity
             android:name="edu.virginia.cs.cs4720.adamhunterdan.phase2.RosterSearch"
             android:label="@string/title_activity_search_form" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name="edu.virginia.cs.cs4720.adamhunterdan.phase2.RosterResult"
@@ -86,38 +61,18 @@
             android:name="edu.virginia.cs.cs4720.adamhunterdan.phase2.Announcements"
             android:label="@string/title_activity_announcements"
             android:theme="@style/Black" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name="edu.virginia.cs.cs4720.adamhunterdan.phase2.OfficeHourQueue"
             android:label="@string/title_activity_office_hour_queue" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name="edu.virginia.cs.cs4720.adamhunterdan.phase2.Calendar"
             android:label="@string/title_activity_calendar" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name="edu.virginia.cs.cs4720.adamhunterdan.phase2.Analytics"
             android:label="@string/title_activity_analytics" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name="edu.virginia.cs.cs4720.adamhunterdan.phase2.CalendarSampleActivity"
