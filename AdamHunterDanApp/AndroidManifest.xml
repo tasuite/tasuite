@@ -17,7 +17,7 @@
     <application
         android:icon="@drawable/logo"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/Black" >
         <activity
             android:name="edu.virginia.cs.cs4720.adamhunterdan.phase2.IntroductionActivity"
             android:label="@string/title_activity_introduction"
@@ -47,7 +47,8 @@
         </activity>
         <activity
             android:name="edu.virginia.cs.cs4720.adamhunterdan.phase2.RosterSearch"
-            android:label="@string/title_activity_search_form" >
+            android:label="@string/title_activity_search_form" 
+            android:theme="@style/Black">
         </activity>
         <activity
             android:name="edu.virginia.cs.cs4720.adamhunterdan.phase2.RosterResult"

@@ -1,31 +1,44 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" 
-    android:orientation="vertical">
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
 
-    <EditText
-        android:id="@+id/search_message"
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@+string/search_message" >
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:contentDescription="fadedPic"
+        android:src="@drawable/logofaded" />
 
-        <requestFocus />
-    </EditText>
-
-
-    <Button
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="search"
-        android:text="@+string/button_send" />
+        android:layout_height="match_parent" >
 
+        <EditText
+            android:id="@+id/search_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/button1"
+            android:layout_toRightOf="@+id/button1"
+            android:ems="10"
+            android:hint="@+string/search_message" >
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="back_to_main"
-        android:text="Home" />
+            <requestFocus />
+        </EditText>
 
-</LinearLayout>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/search_message"
+            android:layout_alignBottom="@+id/search_message"
+            android:layout_alignParentRight="true"
+            android:onClick="search"
+            android:text="@+string/button_send" />
+    </RelativeLayout>
+
+</RelativeLayout>
