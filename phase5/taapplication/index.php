@@ -340,6 +340,35 @@
             </div>
           </div>
           <legend>Grades</legend>
+          <?php if($userexists) { ?>
+          <div id="gradeInputs">
+            <div class="control-group">
+              <?php 
+              $db = DbUtil::loginConnection();
+              $stmt = $db -> stmt_init();
+
+              if($stmt -> prepare("SELECT COUNT(*) FROM grades WHERE comp_id = ?") or die(mysqli_error($db))) {
+                $stmt -> bind_param("s", $_SERVER['PHP_AUTH_USER']);
+                $stmt -> execute();
+                $stmt -> bind_result($numGrades);
+                $stmt -> fetch();
+              }
+
+              $stmt -> close();
+              echo '<input type="hidden" id="gradeCount" name="gradeCount" value="'.$numGrades.'">';
+              $stmt = $db -> stmt_init();
+              if($stmt -> prepare("SELECT course, grade, instructor, year_offered, semester FROM grades WHERE comp_id = ?") or die(mysqli_error($db))) {
+                $stmt -> bind_param("s", $_SERVER['PHP_AUTH_USER']);
+                $stmt -> execute();
+                $stmt -> bind_result($excourse, $exgrade, $exinst, $exyear, $exsem);
+                while ($stmt -> fetch()) {
+                  echo 'LOTS';
+                }
+              }
+               ?>
+            </div>
+          </div>
+          <?php } else { ?>
           <div id="gradeInputs">
             <div class="control-group">
               <input type="hidden" id="gradeCount" name="gradeCount" value="1">
@@ -385,9 +414,40 @@
               </div>
             </div>
           </div>
+          <?php } ?>
           <button class="btn btn-small" onclick="return false" id="add">Add Another Course</button>
           <button class="btn btn-small" onclick="return false" id="remove">Remove Last Course</button><br><br>
           <legend>Availability</legend>
+          <?php if($userexists) { ?>
+          <div id="availabilityInputs">
+            <div id="control-group">
+              <?php 
+              $db = DbUtil::loginConnection();
+              $stmt = $db -> stmt_init();
+
+              if($stmt -> prepare("SELECT COUNT(*) FROM availability WHERE compid = ?") or die(mysqli_error($db))) {
+                $stmt -> bind_param("s", $_SERVER['PHP_AUTH_USER']);
+                $stmt -> execute();
+                $stmt -> bind_result($numAvail);
+                $stmt -> fetch();
+              }
+              $stmt -> close();
+               ?>
+              <input type="hidden" id="availabilityCount" name="availCount" <?php echo 'value="' . $numAvail . '"'; ?>>
+              <?php 
+              $stmt = $db -> stmt_init(); 
+              if ($stmt -> prepare("SELECT course, grade, instructor, year_offered, semester FROM grades WHERE comp_id = ?") or die(mysqli_error($db))) {
+                $stmt -> bind_param("s", $_SERVER['PHP_AUTH_USER']);
+                $stmt -> execute();
+                $stmt -> bind_result($excourse, $exgrade, $exinst, $exyear, $exsem);
+                while ($stmt -> fetch()) {
+                  echo 'LOTS';
+                }
+              }
+               ?>
+            </div>
+          </div>
+          <?php } else { ?>
           <div id="availabilityInputs">
             <div class="control-group">
               <input type="hidden" id="availabilityCount" name="availCount" value="1">
@@ -412,7 +472,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> <?php } ?>
           <button class="btn btn-small" onclick="return false" width="40" id="addAvail">Add Another Course</button>
           <button class="btn btn-small" onclick="return false" width="40" id="removeAvail">Remove Last Course</button><br><br>
           <button type="submit" class="btn btn-success">Submit</button>
