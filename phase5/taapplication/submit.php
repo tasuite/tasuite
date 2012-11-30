@@ -22,16 +22,12 @@ for ($i=1; $i <= $_POST['gradeCount']+0 ; $i++) {
 }
 
 foreach ($_POST as $key => $value) {
-	echo $key . '<br>';
 	if(!(strpos($key, 'section') === false)) {
-		echo 'here';
 		$stmt = $db -> stmt_init();
 		if($stmt -> prepare("INSERT INTO availability VALUES (?,?)") or die(mysqli_error($db))) {
 			$stmt -> bind_param("ss", $value,  $_POST['inputCompid']);
-			echo 'here';
 			$stmt -> execute();
 			$db -> commit();
-			echo 'here';
 		}
 	}
 }

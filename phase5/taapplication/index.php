@@ -12,6 +12,25 @@
     $coursesString = $coursesString . '<option>' . $course . '</option>';
   }
 
+  $userexists = false;
+
+  if($stmt -> prepare("SELECT EXISTS (SELECT * FROM applicant WHERE comp_id = ?)") or die(mysqli_error($db))) {
+    $stmt -> bind_param("s", $_SERVER['PHP_AUTH_USER']);
+    $stmt -> execute();
+    $stmt -> bind_result($exists);
+    $stmt -> fetch();
+    if($exists == '1') $userexists = true;
+  }
+
+  if ($userexists) {
+    if($stmt -> prepare("SELECT fname, lname, school, year, personal_statement FROM applicant WHERE comp_id = ?") or die(mysqli_error($db))) {
+      $stmt -> bind_param("s", $_SERVER['PHP_AUTH_USER']);
+      $stmt -> execute();
+      $stmt -> bind_result($exfname, $exlname, $exschool, $exyear, $exps);
+      $stmt -> fetch();
+    }
+  }
+
   $stmt -> close();
   $db -> close();  
 }
@@ -260,7 +279,7 @@
         <a style="color: white" class="brand" href="#">TA Application</a>
         <div class="nav-collapse collapse">
           <ul class="nav">
-            
+            <?php if($userexists) {?><li><a href="deleteApplication.php">You are editing your existing application.  Click here to delete your application.</a></li><?php }?>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -275,13 +294,13 @@
           <div class="control-group">
             <label class="control-label" for="inputFname">First Name</label>
             <div class="controls">
-              <input type="text" name="inputFname">
+              <input type="text" name="inputFname" <?php if($userexists) echo 'value="'. $exfname . '"'; ?> >
             </div>
           </div>
           <div class="control-group">
             <label class="control-label" for="inputLname">Last Name</label>
             <div class="controls">
-              <input type="text" name="inputLname">
+              <input type="text" name="inputLname" <?php if($userexists) echo 'value="'. $exlname . '"'; ?> >
             </div>
           </div>
           <div class="control-group">
@@ -294,11 +313,11 @@
             <label class="control-label" for="inputYear">Current Year</label>
             <div class="controls">
               <select name="inputYear">
-                <option>1st Year</option>
-                <option>2nd Year</option>
-                <option>3rd Year</option>
-                <option>4th Year</option>
-                <option>5th Year</option>
+                <option <?php if($userexists && ($exyear == '1st Year')) echo 'selected'; ?>>1st Year</option>
+                <option <?php if($userexists && ($exyear == '2nd Year')) echo 'selected'; ?>>2nd Year</option>
+                <option <?php if($userexists && ($exyear == '3rd Year')) echo 'selected'; ?>>3rd Year</option>
+                <option <?php if($userexists && ($exyear == '4th Year')) echo 'selected'; ?>>4th Year</option>
+                <option <?php if($userexists && ($exyear == '5th Year')) echo 'selected'; ?>>5th Year</option>
               </select>
             </div>
           </div>
@@ -306,18 +325,18 @@
             <label class="control-label" for="inputSchool">School</label>
             <div class="controls">
               <select name="inputSchool">
-                <option>College of Arts and Sciences</option>
-                <option>School of Engineering and Applied Science</option>
-                <option>School of Nursing</option>
-                <option>School of Architecture</option>
-                <option>School of Commerce</option>
+                <option <?php if($userexists && ($exschool == 'College of Arts and Sciences')) echo 'selected'; ?>>College of Arts and Sciences</option>
+                <option <?php if($userexists && ($exschool == 'School of Engineering and Applied Science')) echo 'selected'; ?>>School of Engineering and Applied Science</option>
+                <option <?php if($userexists && ($exschool == 'School of Nursing')) echo 'selected'; ?>>School of Nursing</option>
+                <option <?php if($userexists && ($exschool == 'School of Architecture')) echo 'selected'; ?>>School of Architecture</option>
+                <option <?php if($userexists && ($exschool == 'School of Commerce')) echo 'selected'; ?>>School of Commerce</option>
               </select>
             </div>
           </div>
           <div class="control-group">
             <label class="control-label" for="inputStatement">Personal Statement</label>
             <div class="controls">
-              <textarea name="inputStatement" rows=5 placeholder="Just a few lines is fine.  If someone referred you, let us know!"></textarea>
+              <textarea name="inputStatement" rows=5 placeholder="Just a few lines is fine.  If someone referred you, let us know!"><?php if($userexists) echo $exps; ?></textarea>
             </div>
           </div>
           <legend>Grades</legend>
