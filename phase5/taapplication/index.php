@@ -265,6 +265,19 @@
     })
   })
   </script>
+  <?php if($userexists) {?>
+  <script>
+  $(document).ready(function(){
+    for (var i = 1; i <= document.getElementById('gradeCount').value; i++) {
+      $('#gradeInputs div.courseChildren' + i).collapse('hide');
+      $('label[for=inputCourse' + i + ']').text("Click here to show/hide");
+      $('label[for=inputCourse' + i + ']').click(function(){
+        $($(this).parent().get(0).children[$($(this).parent().get(0)).children().size()-1]).collapse('toggle');
+      });
+    };
+  })
+  </script>
+  <?php } ?>
 </head>
 <body>
 
@@ -361,8 +374,84 @@
                 $stmt -> bind_param("s", $_SERVER['PHP_AUTH_USER']);
                 $stmt -> execute();
                 $stmt -> bind_result($excourse, $exgrade, $exinst, $exyear, $exsem);
+                $i = 0;
                 while ($stmt -> fetch()) {
-                  echo 'LOTS';
+                  $i++;
+                  echo '<div id="gradeInputs">
+                          <div class="control-group">
+                            <input type="hidden" id="gradeCount" name="gradeCount" value="' . $i . '">
+                            <label class="control-label" for="inputCourse' . $i . '">Course</label>
+                            <div class="controls">
+                              <input type="text" class="cname" name="inputCourse' . $i . '" placeholder="ex. CS 1110" value="' . $excourse . '">
+                            </div>
+                            <div class="courseChildren' . $i . '">
+                              <label class="control-label" for="inputInstructor' . $i . '">Instructor</label>
+                              <div class="controls">
+                                <input type="text" class="inst" name="inputInstructor' . $i . '" placeholder="ex. Sherriff" value="' . $exinst . '">
+                              </div>
+                              <label class="control-label" for="inputYear' . $i . '">Year</label>
+                              <div class="controls">
+                                <select name="inputYear' . $i . '">
+                                  <option ';
+                                  if($exyear == '2009') echo 'selected';
+                                  echo '>2009</option>
+                                  <option ';
+                                  if($exyear == '2010') echo 'selected';
+                                  echo '>2010</option>
+                                  <option ';
+                                  if($exyear == '2011') echo 'selected';
+                                  echo '>2011</option>
+                                  <option ';
+                                  if($exyear == '2012') echo 'selected';
+                                  echo '>2012</option>
+                                  <option ';
+                                  if($exyear == '2013') echo 'selected';
+                                  echo '>2013</option>
+                                </select>
+                              </div>
+                              <label class="control-label" for="inputSemester' . $i . '">Semester</label>
+                              <div class="controls">
+                                <select name="inputSemester' . $i . '">
+                                  <option ';
+                                  if($exsem == 'Spring') echo 'selected';
+                                  echo '>Spring</option>
+                                  <option ';
+                                  if($exsem == 'Fall') echo 'selected';
+                                  echo '>Fall</option>
+                                </select>
+                              </div>
+                              <label class="control-label" for="inputGrade' . $i . '">Grade</label>
+                              <div class="controls">
+                                <select name="inputGrade' . $i . '">
+                                  <option ';
+                                  if($exgrade == 'A+') echo 'selected';
+                                  echo '>A+</option>
+                                  <option ';
+                                  if($exgrade == 'A') echo 'selected';
+                                  echo '>A</option>
+                                  <option ';
+                                  if($exgrade == 'A-') echo 'selected';
+                                  echo '>A-</option>
+                                  <option ';
+                                  if($exgrade == 'B+') echo 'selected';
+                                  echo '>B+</option>
+                                  <option ';
+                                  if($exgrade == 'B') echo 'selected';
+                                  echo '>B</option>
+                                  <option ';
+                                  if($exgrade == 'B-') echo 'selected';
+                                  echo '>B-</option>
+                                  <option ';
+                                  if($exgrade == 'C+') echo 'selected';
+                                  echo '>C+</option>
+                                  <option ';
+                                  if($exgrade == 'C') echo 'selected';
+                                  echo '>C</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                        </div>';
                 }
               }
                ?>
@@ -436,12 +525,57 @@
               <input type="hidden" id="availabilityCount" name="availCount" <?php echo 'value="' . $numAvail . '"'; ?>>
               <?php 
               $stmt = $db -> stmt_init(); 
-              if ($stmt -> prepare("SELECT course, grade, instructor, year_offered, semester FROM grades WHERE comp_id = ?") or die(mysqli_error($db))) {
+              if ($stmt -> prepare("SELECT DISTINCT course FROM availability NATURAL JOIN sections WHERE compid = ? ORDER BY sis_section_number") or die(mysqli_error($db))) {
                 $stmt -> bind_param("s", $_SERVER['PHP_AUTH_USER']);
                 $stmt -> execute();
-                $stmt -> bind_result($excourse, $exgrade, $exinst, $exyear, $exsem);
+                $stmt -> bind_result($excourse);
+                $i = 0;
                 while ($stmt -> fetch()) {
-                  echo 'LOTS';
+                  $i++;
+                  echo '<label class="control-label" for="availCourse' . $i . '">Course</label>
+                        <div class="controls">
+                          <select name="availCourse' . $i . '" id="ac' . $i . '">
+                            <option ';
+                                  if($excourse == 'CS 1010') echo 'selected';
+                                  echo '>CS 1010</option>
+                                  <option ';
+                                  if($excourse == 'CS 1110') echo 'selected';
+                                  echo '>CS 1110</option>
+                          </select>
+                        </div>
+                        <div class="availChildren' . $i . '">
+                          <label class="control-label" for="beforeCourse' . $i . '">TA\'d before with</label>
+                          <div class="controls">
+                            <input type="text" class="inst" name="beforeCourse' . $i . '" placeholder="Instructor Name or N/A">
+                          </div>
+                          <div id="sections' . $i . '">';
+                            $db2 = DbUtil::loginConnection();
+                            $stmt2 = $db2 -> stmt_init();
+                            if($stmt2 -> prepare("SELECT id, section_day_time, sis_section_number FROM sections WHERE course = ?") or die(mysqli_error($db))) {
+                              $stmt2 -> bind_param("s", $excourse);
+                              $stmt2 -> execute();
+                              $stmt2 -> bind_result($sisid, $secdaytime, $sissecno);
+                              while($stmt2 -> fetch()) {
+                                echo '<label class="control-label" for="section' . $sissecno . '">' . $secdaytime . '</label>
+                                            <div class="controls">
+                                              <div id="toggle-button" class="tb"><input name="section' . $sissecno . '" type="checkbox" value="' . $sisid .'"'; 
+                                                $db3 = DbUtil::loginConnection();
+                                                $stmt3 = $db3 -> stmt_init();
+                                                if ($stmt3 -> prepare("SELECT id FROM availability WHERE compid = ?") or die (mysqli_error($db))) {
+                                                  $stmt3 -> bind_param("s", $_SERVER['PHP_AUTH_USER']);
+                                                  $stmt3 -> execute();
+                                                  $stmt3 -> bind_result($checksisid);
+                                                  while ($stmt3 -> fetch()) {
+                                                    if ($checksisid == $sisid) {
+                                                      echo ' checked';
+                                                    }
+                                                  }
+                                                }
+                                              echo '></div>
+                                            </div>';
+                              }
+                            }
+                          echo '</div></div>';
                 }
               }
                ?>

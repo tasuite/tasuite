@@ -75,20 +75,6 @@ $stmt -> close();
 				</div>
 				<form action="index.php" method="POST"><button class="btn btn-success">Go Back</button></form>
 				<form action="http://its.virginia.edu/netbadge/logout.html" method="POST"><button class="btn btn-danger">Netbadge Logout</button></form>
-				<p>	
-					<?php 
-					printArray($_POST);
-					function printArray($array, $pad=''){
-						foreach ($array as $key => $value){
-							echo $pad . "$key => $value <br>";
-							if(is_array($value)){
-								echo "NEW ARRAY\n";
-								printArray($value, $pad.' ');
-							}  
-						}	 
-					}
-					?>
-				</p>
 			</div>
 		</div>
 	</div>
