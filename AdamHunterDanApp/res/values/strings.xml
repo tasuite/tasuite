@@ -13,7 +13,7 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_horizontal_main">TA Suite</string>
     <string name="title_activity_announcements">Announcements</string>
-    <string name="title_activity_office_hour_queue">Tweet about Office Hours</string>
+    <string name="title_activity_office_hour_queue">Office Hour Queue</string>
     <string name="title_activity_calendar">Calendar</string>
     <string name="title_activity_analytics">Analytics</string>
     <string name="title_activity_calendar_sample">CalendarSampleActivity</string>
