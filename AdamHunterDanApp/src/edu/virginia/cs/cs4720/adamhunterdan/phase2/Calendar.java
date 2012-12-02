@@ -41,7 +41,7 @@ public class Calendar extends Activity {
 		WebSettings webSettings = w.getSettings();
 		webSettings.setJavaScriptEnabled(true);
 		w.setWebViewClient(new WebViewClient());
-		w.loadUrl("https://www.google.com/calendar/feeds/virginia.edu_enqsqm0btkr8pmqt4pa5d8u6u0%40group.calendar.google.com/public/full");
+		w.loadUrl("https://www.google.com/calendar/embed?src=uvacs1110%40gmail.com&ctz=America/New_York/");
 	}
 
 	@Override

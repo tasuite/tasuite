@@ -4,6 +4,7 @@
     android:layout_height="match_parent" >
 
     <Button
+        android:id="@+id/button2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -19,5 +20,13 @@
         android:layout_alignParentTop="true"
         android:onClick="tweetStart"
         android:text="Tweet Office Hours Started" />
+
+    <ListView
+        android:id="@+id/officehourqueue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/button2" >
+    </ListView>
 
 </RelativeLayout>

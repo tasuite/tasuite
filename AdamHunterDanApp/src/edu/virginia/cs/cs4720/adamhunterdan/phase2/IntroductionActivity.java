@@ -42,6 +42,14 @@ public class IntroductionActivity extends Activity {
 		w.postDelayed(wR, 4000);
 
 	}
+	@Override
+	protected void onResume() {
+		super.onResume();
+		setContentView(R.layout.activity_introduction);
+		WaitHandler w = new WaitHandler(this);
+		WaitRunnable wR = new WaitRunnable(this);
+		w.postDelayed(wR, 4000);
+	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

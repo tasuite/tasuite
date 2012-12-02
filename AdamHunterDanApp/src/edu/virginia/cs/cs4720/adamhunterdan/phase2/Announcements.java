@@ -28,7 +28,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 
 public class Announcements extends Activity {
-	ListView regradeList;
+	ListView announcementList;
 	String webserviceURL = "http://plato.cs.virginia.edu/~atc4cy/tasuite/phase1/rest/announcement/view/";
 	ArrayList<Announcement> values;
 	ArrayAdapter<Announcement> adapter;
@@ -37,22 +37,22 @@ public class Announcements extends Activity {
     public void onCreate(Bundle savedInstanceState) {
     	super.setTheme( android.R.style.Theme_Black );
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search_result_regrade);
+        setContentView(R.layout.activity_announcements);
         Intent intent = getIntent();
-		regradeList = (ListView) findViewById(R.id.regradeList);
+		announcementList = (ListView) findViewById(R.id.AnnouncementsList);
 		values = new ArrayList<Announcement>();
 
 		adapter = new ArrayAdapter<Announcement>(this,
 				android.R.layout.simple_list_item_1, android.R.id.text1, values);
 		
-		regradeList.setAdapter(adapter);
+		announcementList.setAdapter(adapter);
 		
 		new GetAnnouncementsTask().execute(webserviceURL);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_search_result_regrade, menu);
+        getMenuInflater().inflate(R.menu.activity_announcements, menu);
         return true;
     }
 
@@ -143,6 +143,7 @@ public class Announcements extends Activity {
 			// Notifies adapter that data has changed, and view must update
 			adapter.notifyDataSetChanged();
 		}
+		
 	}
 
 
