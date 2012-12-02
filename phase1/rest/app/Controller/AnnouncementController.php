@@ -1,18 +1,18 @@
 <?php
-class StudentController extends AppController {
+class AnnouncementController extends AppController {
 	public $componenets = array('RequestHandler');
 	public $helpers = array('Html', 'Form', 'Text', 'Cache');
 	public function index(){
-		$this->set('students', $this->Student->find('all'));	
+		$this->set('announcements', $this->Announcement->find('all'));	
 	}
 	public function view($id = null, $id2 = null) {
 		if($id != null){
-		$stud = $this->Student->findAllByCompid($id);
-		$this->set('students', $stud);
+		$announce = $this->Announcement->findAllByCompid($id);
+		$this->set('announcements', $announce);
 		}
 		else{
-			$stud = $this->Student->find('all');
-			$this->set('students', $stud);
+			$announce = $this->Announcement->find('all');
+			$this->set('announcements', $announce);
 		}
 		/*else{
                         $lou = $this->Student->find('all', array('conditions' => array('Louslist.mnemonic =' => $id, 'Louslist.number =' => $id2)));
