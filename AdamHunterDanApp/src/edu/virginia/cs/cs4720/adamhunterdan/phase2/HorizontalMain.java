@@ -83,31 +83,31 @@ public class HorizontalMain extends Activity {
 				// take the user to their chosen image selection app (gallery or
 				// file manager)
 				Intent intent = null;
-				switch (currentPic){
+				switch (currentPic) {
 				case 0:
-			    	intent = new Intent(thisClass, RosterSearch.class);
-			    	break; //Roster
+					intent = new Intent(thisClass, RosterSearch.class);
+					break; // Roster
 				case 1:
-			    	intent = new Intent(thisClass, RegradeSearch.class);
-			    	break; //Regrades
+					intent = new Intent(thisClass, RegradeResult.class);
+					break; // Regrades
 				case 2:
 					intent = new Intent(thisClass, Announcements.class);
-					break; //Announcements
+					break; // Announcements
 				case 3:
 					intent = new Intent(thisClass, OfficeHourQueue.class);
-					break; //Office Hours
+					break; // Office Hours
 				case 4:
 					intent = new Intent(thisClass, Calendar.class);
-					break; //Calendar
-				case 5:
-					intent = new Intent(thisClass, Analytics.class);
-					break; //Analytics
+					break; // Calendar
+				// case 5:
+				// intent = new Intent(thisClass, Analytics.class);
+				// break; //Analytics
 				default:
 					intent = new Intent(thisClass, RosterSearch.class);
 					break;
 				}
-		    	startActivity(intent);
-				
+				startActivity(intent);
+
 				return true;
 			}
 		});
@@ -149,25 +149,25 @@ public class HorizontalMain extends Activity {
 			// instantiate context
 			galleryContext = c;
 
-			//!!!!!HERE FOR THE PICTURES!!!!!
+			// !!!!!HERE FOR THE PICTURES!!!!!
 			// create bitmap array
-			imageBitmaps = new Bitmap[6];
+			imageBitmaps = new Bitmap[5];
 			// decode the placeholder image
-			//!!!!!!!!!!!!!!!!!!!!!!!!
+			// !!!!!!!!!!!!!!!!!!!!!!!!
 			// set placeholder as all thumbnail images in the gallery initially
-			
-			imageBitmaps[0] =  BitmapFactory.decodeResource(getResources(),
+
+			imageBitmaps[0] = BitmapFactory.decodeResource(getResources(),
 					R.drawable.roster);
-			imageBitmaps[1] =  BitmapFactory.decodeResource(getResources(),
-					R.drawable.grades);	
-			imageBitmaps[2] =  BitmapFactory.decodeResource(getResources(),
-					R.drawable.announcement); //Announcements
-			imageBitmaps[3] =  BitmapFactory.decodeResource(getResources(),
-					R.drawable.officehours);	//Office Hours
-			imageBitmaps[4] =  BitmapFactory.decodeResource(getResources(),
-					R.drawable.calendar); //Calendar
-			imageBitmaps[5] =  BitmapFactory.decodeResource(getResources(),
-					R.drawable.analytics);	//Analytics
+			imageBitmaps[1] = BitmapFactory.decodeResource(getResources(),
+					R.drawable.grades);
+			imageBitmaps[2] = BitmapFactory.decodeResource(getResources(),
+					R.drawable.announcement); // Announcements
+			imageBitmaps[3] = BitmapFactory.decodeResource(getResources(),
+					R.drawable.officehours); // Office Hours
+			imageBitmaps[4] = BitmapFactory.decodeResource(getResources(),
+					R.drawable.calendar); // Calendar
+			// imageBitmaps[5] = BitmapFactory.decodeResource(getResources(),
+			// R.drawable.analytics); //Analytics
 			// get the styling attributes - use default Andorid system resources
 			TypedArray styleAttrs = galleryContext
 					.obtainStyledAttributes(R.styleable.PicGallery);

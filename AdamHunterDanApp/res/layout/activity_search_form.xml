@@ -17,26 +17,25 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true" >
 
         <EditText
             android:id="@+id/search_message"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@+id/button1"
-            android:layout_toRightOf="@+id/button1"
             android:ems="10"
-            android:hint="@+string/search_message" >
-
-            <requestFocus />
-        </EditText>
+            android:hint="@+string/search_message" />
 
         <Button
+            android:id="@+id/button1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/search_message"
-            android:layout_alignBottom="@+id/search_message"
             android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:contentDescription="@+id/button1"
             android:onClick="search"
             android:text="@+string/button_send" />
     </RelativeLayout>
